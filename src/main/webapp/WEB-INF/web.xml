@@ -3,5 +3,13 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>Parser</servlet-name>
+		<servlet-class>com.feetao.wx.servlet.Parser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Parser</servlet-name>
+		<url-pattern>/mmc.Parse</url-pattern>
+	</servlet-mapping>
 </web-app>
