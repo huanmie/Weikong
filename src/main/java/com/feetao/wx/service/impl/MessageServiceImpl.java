@@ -1,27 +1,40 @@
-package com.feetao.wx.common;
+package com.feetao.wx.service.impl;
 
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.annotation.Resource;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.feetao.wx.dao.MessageDao;
+import com.feetao.wx.model.ArticleDO;
+import com.feetao.wx.service.MessageService;
+import com.feetao.wx.vo.Article;
 import com.feetao.wx.vo.MessageEventReceiveVO;
 import com.feetao.wx.vo.MessageImageReceiveVO;
 import com.feetao.wx.vo.MessageLinkReceiveVO;
 import com.feetao.wx.vo.MessageLocationReceiveVO;
+import com.feetao.wx.vo.MessageNewsSendVO;
 import com.feetao.wx.vo.MessageReceiveVO;
+import com.feetao.wx.vo.MessageSendVO;
 import com.feetao.wx.vo.MessageTextReceiveVO;
 import com.feetao.wx.vo.MessageVideoReceiveVO;
 import com.feetao.wx.vo.MessageVoiceReceiveVO;
 
-public class MessageReceiveParser {
+public class MessageServiceImpl implements MessageService {
 
-	public static MessageReceiveVO parse(InputStream in) throws DocumentException {
+	@Resource
+	private MessageDao messageDao;
+
+	@Override
+	public MessageReceiveVO parse(InputStream in) throws DocumentException {
 		SAXReader reader 	= new SAXReader();
 		Document doc 		= reader.read(in);
 		Element root 		= doc.getRootElement();
@@ -42,11 +55,36 @@ public class MessageReceiveParser {
 		} else if(msgType.equalsIgnoreCase("event")) {
 			message	= new MessageEventReceiveVO();
 		}
+		System.out.println("---------------- parse ------------------");
 		message.setProperties(root);
 		return message;
 	}
-	
-	public static boolean checkSignature(String signature , String timestamp , String nonce) {  
+
+	@Override
+	public MessageSendVO hander(MessageReceiveVO receiver) {
+		System.out.println("---------------- handler ----------------");
+		ArrayList<ArticleDO> articles = messageDao.getNewsItem();
+		if(articles != null && articles.size() > 0) {
+			MessageNewsSendVO sender = new MessageNewsSendVO();
+			sender.setFromUserName(receiver.getToUserName());
+			sender.setToUserName(receiver.getFromUserName());
+			sender.setCreateTime((int)(System.currentTimeMillis()/1000));
+			sender.setMsgType("news");
+			for(int i = 0 ; i < articles.size() ; i++) {
+				Article article = new Article();
+				article.setTitle(articles.get(i).getTitle());
+				article.setDescription(articles.get(i).getDescription());
+				article.setPicUrl(articles.get(i).getPicUrl());
+				article.setUrl(articles.get(i).getUrl());
+				sender.addArticle(article);
+			}
+			return sender;
+		}
+		return null;
+	}
+
+	@Override
+	public boolean checkSign(String signature, String timestamp, String nonce) {
 		String[] arr = new String[]{"qwerty",timestamp,nonce};  
 		Arrays.sort(arr);  
 		StringBuilder content = new StringBuilder();  
@@ -73,7 +111,7 @@ public class MessageReceiveParser {
 	 * @param ib
 	 * @return
 	 */
-    private static String byteToHexStr(byte ib) {  
+    private String byteToHexStr(byte ib) {  
         char[] Digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};  
         char[] ob = new char[2];  
         ob[0] = Digit[(ib >>> 4) & 0X0F];  
@@ -87,11 +125,12 @@ public class MessageReceiveParser {
      * @param bytearray
      * @return
      */
-    private static String byteToStr(byte[] bytearray) {  
+    private String byteToStr(byte[] bytearray) {  
         String strDigest = "";  
         for (int i = 0; i < bytearray.length; i++)
             strDigest += byteToHexStr(bytearray[i]);  
         return strDigest;  
     }
 
+	
 }

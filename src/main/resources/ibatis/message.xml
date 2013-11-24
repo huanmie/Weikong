@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE sqlMap       
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"       
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="message">
+	<resultMap id="messageResult" class="com.feetao.wx.model.ArticleDO">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="description" column="description" />
+		<result property="picUrl" column="picUrl" />
+		<result property="url" column="url" />
+	</resultMap>
+	
+	<select id="getList" resultMap="messageResult">
+		select * from news where status=1;
+	</select>
+	
+</sqlMap>  
