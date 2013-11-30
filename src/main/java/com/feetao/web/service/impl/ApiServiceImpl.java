@@ -3,6 +3,7 @@ package com.feetao.web.service.impl;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.annotation.Resource;
@@ -13,21 +14,24 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.feetao.web.dao.UserNewsDao;
-import com.feetao.web.service.WXService;
+import com.feetao.web.model.UserNewsDO;
+import com.feetao.web.service.ApiService;
+import com.feetao.web.wx.vo.Article;
 import com.feetao.web.wx.vo.MessageEventReceiveVO;
 import com.feetao.web.wx.vo.MessageImageReceiveVO;
 import com.feetao.web.wx.vo.MessageLinkReceiveVO;
 import com.feetao.web.wx.vo.MessageLocationReceiveVO;
+import com.feetao.web.wx.vo.MessageNewsSendVO;
 import com.feetao.web.wx.vo.MessageReceiveVO;
 import com.feetao.web.wx.vo.MessageSendVO;
 import com.feetao.web.wx.vo.MessageTextReceiveVO;
 import com.feetao.web.wx.vo.MessageVideoReceiveVO;
 import com.feetao.web.wx.vo.MessageVoiceReceiveVO;
 
-public class WXServiceImpl implements WXService {
+public class ApiServiceImpl implements ApiService {
 
 	@Resource
-//	private UserNewsDao userNewsDao;
+	private UserNewsDao userNewsDao;
 
 	@Override
 	public MessageReceiveVO parse(InputStream in) throws DocumentException {
@@ -56,24 +60,24 @@ public class WXServiceImpl implements WXService {
 	}
 
 	@Override
-	public MessageSendVO hander(MessageReceiveVO receiver) {
-//		ArrayList<ArticleDO> articles = userNewsDao.getNewsList();
-//		if(articles != null && articles.size() > 0) {
-//			MessageNewsSendVO sender = new MessageNewsSendVO();
-//			sender.setFromUserName(receiver.getToUserName());
-//			sender.setToUserName(receiver.getFromUserName());
-//			sender.setCreateTime((int)(System.currentTimeMillis()/1000));
-//			sender.setMsgType("news");
-//			for(int i = 0 ; i < articles.size() ; i++) {
-//				Article article = new Article();
-//				article.setTitle(articles.get(i).getTitle());
-//				article.setDescription(articles.get(i).getDescription());
-//				article.setPicUrl(articles.get(i).getPicUrl());
-//				article.setUrl(articles.get(i).getUrl());
-//				sender.addArticle(article);
-//			}
-//			return sender;
-//		}
+	public MessageSendVO hander(Long userId , MessageReceiveVO receiver) {
+		ArrayList<UserNewsDO> newsList = userNewsDao.getOnlineList(userId);
+		if(newsList != null && newsList.size() > 0) {
+			MessageNewsSendVO sender = new MessageNewsSendVO();
+			sender.setFromUserName(receiver.getToUserName());
+			sender.setToUserName(receiver.getFromUserName());
+			sender.setCreateTime((int)(System.currentTimeMillis()/1000));
+			sender.setMsgType("news");
+			for(int i = 0 ; i < newsList.size() ; i++) {
+				Article article = new Article();
+				article.setTitle(newsList.get(i).getTitle());
+				article.setDescription(newsList.get(i).getDescription());
+				article.setPicUrl(newsList.get(i).getPicUrl());
+				article.setUrl(newsList.get(i).getUrl());
+				sender.addArticle(article);
+			}
+			return sender;
+		}
 		return null;
 	}
 

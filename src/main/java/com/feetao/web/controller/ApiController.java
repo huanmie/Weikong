@@ -7,29 +7,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.feetao.web.service.WXService;
+import com.feetao.web.service.ApiService;
 import com.feetao.web.wx.vo.MessageReceiveVO;
 import com.feetao.web.wx.vo.MessageSendVO;
 
 @Controller
-public class WXController {
+@RequestMapping("/api")
+public class ApiController {
 
 	@Resource
-	private WXService messageService;
+	private ApiService apiService;
 	
 	@ResponseBody
-	@RequestMapping("mmc.Parse")
-	public void parser(HttpServletRequest request , HttpServletResponse response) {
+	@RequestMapping("/{userId}")
+	public void parser(@PathVariable("userId") Long userId, HttpServletRequest request , HttpServletResponse response) {
         try{
         	String signature 	= request.getParameter("signature");
         	String timestamp 	= request.getParameter("timestamp");
         	String nonce		= request.getParameter("nonce");
-        	if(messageService.checkSign(signature, timestamp, nonce)) {
-        		MessageReceiveVO receiver	= messageService.parse(request.getInputStream());
-        		MessageSendVO sender		= messageService.hander(receiver);
+        	if(apiService.checkSign(signature, timestamp, nonce)) {
+        		MessageReceiveVO receiver	= apiService.parse(request.getInputStream());
+        		MessageSendVO sender		= apiService.hander(userId , receiver);
         		if(sender != null) {
         			PrintWriter out				= response.getWriter();
         			out.print(sender.toXML());

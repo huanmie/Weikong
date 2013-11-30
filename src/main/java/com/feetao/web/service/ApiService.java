@@ -7,7 +7,7 @@ import org.dom4j.DocumentException;
 import com.feetao.web.wx.vo.MessageReceiveVO;
 import com.feetao.web.wx.vo.MessageSendVO;
 
-public interface WXService {
+public interface ApiService {
 
 	/**
 	 * 解析消息内容
@@ -22,7 +22,7 @@ public interface WXService {
 	 * @param receiver
 	 * @return
 	 */
-	public MessageSendVO hander(MessageReceiveVO receiver);
+	public MessageSendVO hander(Long userId , MessageReceiveVO receiver);
 	
 	/**
 	 * 校验消息的合法性

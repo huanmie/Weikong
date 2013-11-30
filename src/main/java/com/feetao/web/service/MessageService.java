@@ -1,5 +1,5 @@
 package com.feetao.web.service;
 
-public interface ArticleService {
+public interface MessageService {
 
 }

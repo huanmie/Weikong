@@ -14,12 +14,12 @@ public abstract class BaseDO implements Serializable {
 	/**
 	 * 创建时间
 	 */
-	protected Long gmt_create;
+	protected Long gmtCreate;
 	
 	/**
 	 * 更新时间
 	 */
-	protected Long gmt_modified;
+	protected Long gmtModified;
 
 	public Byte getStatus() {
 		return status;
@@ -29,20 +29,20 @@ public abstract class BaseDO implements Serializable {
 		this.status = status;
 	}
 
-	public Long getGmt_create() {
-		return gmt_create;
+	public Long getGmtCreate() {
+		return gmtCreate;
 	}
 
-	public void setGmt_create(Long gmt_create) {
-		this.gmt_create = gmt_create;
+	public void setGmtCreate(Long gmtCreate) {
+		this.gmtCreate = gmtCreate;
 	}
 
-	public Long getGmt_modified() {
-		return gmt_modified;
+	public Long getGmtModified() {
+		return gmtModified;
 	}
 
-	public void setGmt_modified(Long gmt_modified) {
-		this.gmt_modified = gmt_modified;
+	public void setGmtModified(Long gmtModified) {
+		this.gmtModified = gmtModified;
 	}
-	
+
 }

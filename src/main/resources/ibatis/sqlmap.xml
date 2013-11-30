@@ -12,7 +12,7 @@
 	<sqlMap resource="ibatis/user_message.xml" />
 	<sqlMap resource="ibatis/user_news.xml" />
 	<sqlMap resource="ibatis/user_web_activity.xml" />
-	<sqlMap resource="ibatis/user_web_ablum.xml" />
+	<sqlMap resource="ibatis/user_web_album.xml" />
 	<sqlMap resource="ibatis/user_web_banner.xml" />
 	<sqlMap resource="ibatis/user_web_member.xml" />
 	<sqlMap resource="ibatis/user_web_message.xml" />

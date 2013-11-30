@@ -3,16 +3,20 @@
     PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"       
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="user_news">
-	<resultMap id="messageResult" class="com.feetao.wx.model.ArticleDO">
+	<resultMap id="newsResult" class="com.feetao.web.model.UserNewsDO">
 		<result property="id" column="id" />
+		<result property="userId" column="user_id" />
 		<result property="title" column="title" />
 		<result property="description" column="description" />
 		<result property="picUrl" column="picUrl" />
 		<result property="url" column="url" />
+		<result property="status" column="status" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModified" column="gmt_modified" />
 	</resultMap>
 	
-	<select id="getList" resultMap="messageResult">
-		select * from news where status=1;
+	<select id="getOnlineList" resultMap="newsResult" parameterClass="java.util.Map">
+		select * from user_news where user_id=#userId# and status=#status#;
 	</select>
 	
-</sqlMap>  
+</sqlMap>
