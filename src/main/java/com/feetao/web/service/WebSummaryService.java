@@ -1,5 +1,11 @@
 package com.feetao.web.service;
 
-public class WebSummaryService {
+public interface WebSummaryService {
 
+	/**
+	 * 获取用户summary
+	 * @param userId
+	 * @return
+	 */
+	public String  get(Long userId);
 }
