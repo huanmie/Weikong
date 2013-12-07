@@ -1,0 +1,3 @@
+#parse("control/banner.vm")
+#parse("control/articlelist.vm")
+#parse("control/bar.vm")

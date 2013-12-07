@@ -4,4 +4,8 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="user_web_banner">
 	
+	<select id="getOnlineList" resultClass="string" parameterClass="java.util.Map">
+		select picUrl from user_web_banner where user_id=#userId# and status=#status#;
+	</select>
+	
 </sqlMap>  

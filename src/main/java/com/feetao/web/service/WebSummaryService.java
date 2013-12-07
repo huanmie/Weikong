@@ -1,5 +1,7 @@
 package com.feetao.web.service;
 
+import com.feetao.web.vo.CommonArgs;
+
 public interface WebSummaryService {
 
 	/**
@@ -7,5 +9,5 @@ public interface WebSummaryService {
 	 * @param userId
 	 * @return
 	 */
-	public String  get(Long userId);
+	public String  get(CommonArgs args);
 }

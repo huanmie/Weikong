@@ -18,6 +18,7 @@ import com.feetao.web.dao.UserNewsDao;
 import com.feetao.web.model.UserNewsDO;
 import com.feetao.web.service.ApiService;
 import com.feetao.web.service.CommonService;
+import com.feetao.web.vo.CommonArgs;
 import com.feetao.web.wx.vo.Article;
 import com.feetao.web.wx.vo.MessageEventReceiveVO;
 import com.feetao.web.wx.vo.MessageImageReceiveVO;
@@ -75,8 +76,7 @@ public class ApiServiceImpl implements ApiService {
 			for(int i = 0 ; i < newsList.size() ; i++) {
 				Article article = new Article();
 				BeanUtils.copyProperties(newsList.get(i), article);
-				String url = commonService.url(article.getUrl(), userId, receiver.getFromUserName(), receiver.getToUserName());
-				article.setUrl(url);
+				article.setUrl(commonService.url(article.getUrl(), new CommonArgs(userId, receiver.getFromUserName(), receiver.getToUserName())));
 				sender.addArticle(article);
 			}
 			return sender;

@@ -1,5 +1,7 @@
 package com.feetao.web.service;
 
+import com.feetao.web.vo.CommonArgs;
+
 public interface CommonService {
 
 	/**
@@ -10,6 +12,6 @@ public interface CommonService {
 	 * @param chatto
 	 * @return
 	 */
-	public String url(String url , Long uid , String chatfrom , String chatto);
+	public String url(String url , CommonArgs args);
 
 }

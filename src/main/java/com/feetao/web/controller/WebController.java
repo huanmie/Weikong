@@ -1,20 +1,19 @@
 package com.feetao.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.feetao.web.service.WebArticleService;
 import com.feetao.web.service.WebBannerService;
 import com.feetao.web.service.WebSummaryService;
+import com.feetao.web.vo.CommonArgs;
 import com.feetao.web.vo.WebArticle;
 
 @Controller
@@ -30,52 +29,59 @@ public class WebController {
 	@Resource
 	private WebArticleService webArticleService;
 	
+	/**
+	 * 渲染首页，banner和summary
+	 * @param args
+	 * @return
+	 */
 	@RequestMapping("/home")
-	public ModelAndView getHome() {
-		List<String> banners = webBannerService.getList(0L);
-		String summary		= webSummaryService.get(0L);
-		
-		
-		return null;
+	public ModelAndView getHome(CommonArgs args) {
+		ModelAndView mv = new ModelAndView("screen/home");
+		mv.addObject("banners", webBannerService.getList(args));
+		mv.addObject("summary", webSummaryService.get(args));
+		return mv;
+	}
+
+	/**
+	 * 产品详情页面
+	 * @param args
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/article/panel")
+	public ModelAndView getArticle(CommonArgs args) {
+		ModelAndView mv = new ModelAndView("screen/article");
+		return mv;
+	}
+
+	/**
+	 * 产品详情页面
+	 * @param args
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/article/detail")
+	public ModelAndView getArticleDetail(CommonArgs args , @RequestParam(value = "id")Long id) {
+		ModelAndView mv = new ModelAndView("screen/article");
+		mv.addObject("article", webArticleService.get(args , id));
+		return mv;
 	}
 	
-	
+	/**
+	 * 产品列表JSON
+	 * @param args
+	 * @param cursor
+	 * @param direction
+	 * @param size
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("/article/list")
-	public ArrayList<WebArticle> listArticle(HttpServletRequest request , HttpServletResponse response) {
-		
-//		ArrayList<WebArticle> list = null;
-//        try{
-//        	long cursor 	= Long.MAX_VALUE;
-//        	int direction	= 1;
-//        	int size		= 10;
-//        	
-//        	try{
-//        		cursor = Integer.parseInt(request.getParameter("cursor"));
-//        	} catch(NumberFormatException e) {
-//        	}
-//        	try{
-//        		direction = Integer.parseInt(request.getParameter("direction"));
-//        	} catch(NumberFormatException e) {
-//        	}
-//        	try{
-//        		size = Integer.parseInt(request.getParameter("size"));
-//        	} catch(NumberFormatException e) {
-//        	}
-//        	
-//        	list = partService.getPartList(cursor, direction, size);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//        return list;
-		return null;
+	public List<WebArticle> listArticle(CommonArgs args , @RequestParam(value = "cursor", required = false , defaultValue="9223372036854775807") Long cursor , 
+			@RequestParam(value = "direction", required = false , defaultValue="1") Byte direction , 
+			@RequestParam(value = "size", required = false , defaultValue="10") Integer size) {
+		List<WebArticle> list = webArticleService.getList(args , cursor, direction, size);
+		return list;
 	}
-
-	@RequestMapping("/article/detail")
-	public ArrayList<WebArticle> getDetail(HttpServletRequest request , HttpServletResponse response) {
-		webArticleService.get(0L);
-		return null;
-	}
-
 	
 }

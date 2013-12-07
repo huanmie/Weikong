@@ -1,0 +1,2 @@
+#parse("control/articlelist.vm")
+#parse("control/bar.vm")

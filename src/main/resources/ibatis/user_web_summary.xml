@@ -4,4 +4,8 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="user_web_summary">
 	
+	<select id="getOnline" resultClass="string" parameterClass="java.util.Map">
+		select summary from user_web_summary where user_id=#userId# and status=#status#;
+	</select>
+	
 </sqlMap>  
