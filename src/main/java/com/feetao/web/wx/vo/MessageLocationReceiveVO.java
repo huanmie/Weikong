@@ -64,4 +64,11 @@ public class MessageLocationReceiveVO extends MessageReceiveVO {
 		this.msgId	 		= root.element("MsgId").getTextTrim();
 	}
 
+	@Override
+	public String toString() {
+		return "MessageLocationReceiveVO [locationX=" + locationX
+				+ ", locationY=" + locationY + ", scale=" + scale + ", label="
+				+ label + ", msgId=" + msgId + "]";
+	}
+
 }

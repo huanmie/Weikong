@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
@@ -36,13 +35,12 @@
         <property name="minEvictableIdleTimeMillis" value="10000"/>
     </bean>
   
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">  
-        <property name="configLocation" value="classpath:ibatis/sqlmap.xml" />  
-        <property name="dataSource" ref="dataSource" />  
-    </bean>
-
-    <bean id="sqlDaoBaseSupport" abstract="true">
-    	<property name="sqlMapClient" ref="sqlMapClient" />
-    </bean>
-    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+	</bean>
+	
+	<bean id="sqlDaoBaseSupport" abstract="true">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 </beans>

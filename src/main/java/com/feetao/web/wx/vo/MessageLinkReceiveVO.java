@@ -53,4 +53,10 @@ public class MessageLinkReceiveVO extends MessageReceiveVO {
 		this.msgId	 		= root.element("MsgId").getTextTrim();
 	}
 
+	@Override
+	public String toString() {
+		return "MessageLinkReceiveVO [title=" + title + ", description="
+				+ description + ", url=" + url + ", msgId=" + msgId + "]";
+	}
+	
 }

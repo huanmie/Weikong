@@ -42,4 +42,10 @@ public class MessageVoiceReceiveVO extends MessageReceiveVO {
 		this.msgId	 	= root.element("MsgId").getTextTrim();
 	}
 
+	@Override
+	public String toString() {
+		return "MessageVoiceReceiveVO [mediaId=" + mediaId + ", format="
+				+ format + ", msgId=" + msgId + "]";
+	}
+
 }

@@ -1,0 +1,8 @@
+<div class="plugin">
+	#parse("control/rotate.vm");
+</div>
+<div class="well">
+	<h4>一等奖：牛奶糖一颗</h4>
+	<h4>二等奖：冰棍一根</h4>
+	<h4>三等奖：花生米一粒</h4>
+</div>

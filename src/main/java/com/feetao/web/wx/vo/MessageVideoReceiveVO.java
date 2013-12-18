@@ -42,4 +42,10 @@ public class MessageVideoReceiveVO extends MessageReceiveVO {
 		this.msgId	 		= root.element("MsgId").getTextTrim();
 	}
 
+	@Override
+	public String toString() {
+		return "MessageVideoReceiveVO [mediaId=" + mediaId + ", thumbMediaId="
+				+ thumbMediaId + ", msgId=" + msgId + "]";
+	}
+
 }

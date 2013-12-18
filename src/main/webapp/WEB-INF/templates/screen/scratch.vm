@@ -1,0 +1,8 @@
+<div>
+	#parse("control/scratch.vm");
+</div>
+<div class="well">
+	<h4>一等奖：大豆</h4>
+	<h4>二等奖：瓜子</h4>
+	<h4>三等奖：豆芽</h4>
+</div>

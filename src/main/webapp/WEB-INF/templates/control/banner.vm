@@ -1,19 +1,22 @@
+<!-- banner -->
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
-		<li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-		<li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-		<li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+		#foreach($banner in $bannerList)
+		<li data-target="#carousel-example-generic" data-slide-to="${velocityCount}-1" class="#if($velocityCount == 1) active #end"></li>
+		#end
 	</ol>
 	<div class="carousel-inner">
-		<div class="item">
-			<img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide" src="http://m.feetao.com/asset/image/ceshi.jpg">
+		#set($start="1")
+		#foreach($banner in $bannerList)
+		<div class="item #if($velocityCount == 1) active #end">
+			<a href="$banner.link">
+    			<img data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide" src="$banner.picUrl" />
+    			<span class="carousel-caption">
+    				<h3>$banner.title</h3>
+    			</span>
+			</a>
 		</div>
-		<div class="item">
-			<img data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide" src="http://m.feetao.com/asset/image/ceshi.jpg">
-		</div>
-		<div class="item active">
-            <img data-src="holder.js/900x500/auto/#555:#333/text:Third slide" alt="Third slide" src="http://m.feetao.com/asset/image/ceshi.jpg">
-		</div>
+		#end
 	</div>
 	<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
 		<span class="glyphicon glyphicon-chevron-left"></span>

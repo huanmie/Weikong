@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="Weikong"
+  name="Weikong Maven Webapp"
   id="myeclipse.1385191327576"
-  context-root="/WSDK"
+  context-root="/Weikong"
   j2ee-spec="6.0"
-  archive="Weikong.war">
+  archive="Weikong Maven Webapp.war">
   <attributes>
     <attribute name="webrootdir" value="src/main/webapp" />
   </attributes>

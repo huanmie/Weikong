@@ -31,5 +31,11 @@ public class MessageTextReceiveVO extends MessageReceiveVO {
 		this.content = root.element("Content").getTextTrim();
 		this.msgId	 = root.element("MsgId").getTextTrim();
 	}
+
+	@Override
+	public String toString() {
+		return "MessageTextReceiveVO [content=" + content + ", msgId=" + msgId
+				+ "]";
+	}
 	
 }

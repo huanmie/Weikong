@@ -1,87 +1,119 @@
 package com.feetao.web.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.feetao.web.service.WebArticleService;
-import com.feetao.web.service.WebBannerService;
-import com.feetao.web.service.WebSummaryService;
-import com.feetao.web.vo.CommonArgs;
-import com.feetao.web.vo.WebArticle;
-
+import com.feetao.web.service.ArticleService;
+import com.feetao.web.support.RequestContextHolder;
+import com.feetao.web.support.RequestData;
 @Controller
 @RequestMapping("/mini")
 public class WebController {
 
 	@Resource
-	private WebBannerService webBannerService;
-
-	@Resource
-	private WebSummaryService webSummaryService;
+	private ArticleService articleService;
 	
 	@Resource
-	private WebArticleService webArticleService;
+	private RequestContextHolder requestContextHolder;
 	
 	/**
-	 * 渲染首页，banner和summary
-	 * @param args
+	 * 留言板
 	 * @return
 	 */
-	@RequestMapping("/home")
-	public ModelAndView getHome(CommonArgs args) {
-		ModelAndView mv = new ModelAndView("screen/home");
-		mv.addObject("banners", webBannerService.getList(args));
-		mv.addObject("summary", webSummaryService.get(args));
+	@RequestMapping("/board")
+	public ModelAndView getBoard() {
+		RequestData data = requestContextHolder.getRequestData();
+		ModelAndView mv = new ModelAndView("screen/board");
+		mv.addObject("bannerList", articleService.getBannerList(data.getUserId()));
+		mv.addObject("newsList" , articleService.getNewsList(data.getUserId()));
 		return mv;
 	}
 
 	/**
-	 * 产品详情页面
-	 * @param args
+	 * 购物车
+	 * @return
+	 */
+	@RequestMapping("/cart")
+	public ModelAndView getCart() {
+		RequestData data = requestContextHolder.getRequestData();
+		ModelAndView mv = new ModelAndView("screen/cart");
+		mv.addObject("bannerList", articleService.getBannerList(data.getUserId()));
+		mv.addObject("newsList" , articleService.getNewsList(data.getUserId()));
+		return mv;
+	}
+
+	/**
+	 * banner和news
+	 * @return
+	 */
+	@RequestMapping("/news_banner")
+	public ModelAndView newsBanner() {
+		RequestData data = requestContextHolder.getRequestData();
+		ModelAndView mv = new ModelAndView("screen/news_banner");
+		mv.addObject("bannerList", articleService.getBannerList(data.getUserId()));
+		mv.addObject("newsList" , articleService.getNewsList(data.getUserId()));
+		return mv;
+	}
+
+	/**
+	 * 详情页面
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/article/panel")
-	public ModelAndView getArticle(CommonArgs args) {
-		ModelAndView mv = new ModelAndView("screen/article");
-		return mv;
-	}
-
-	/**
-	 * 产品详情页面
-	 * @param args
-	 * @param id
-	 * @return
-	 */
-	@RequestMapping("/article/detail")
-	public ModelAndView getArticleDetail(CommonArgs args , @RequestParam(value = "id")Long id) {
-		ModelAndView mv = new ModelAndView("screen/article");
-		mv.addObject("article", webArticleService.get(args , id));
+	@RequestMapping("/detail")
+	public ModelAndView detail(@RequestParam(value = "id")Long id) {
+		ModelAndView mv = new ModelAndView("screen/detail");
+		mv.addObject("article", articleService.get(id));
 		return mv;
 	}
 	
 	/**
-	 * 产品列表JSON
-	 * @param args
-	 * @param cursor
-	 * @param direction
-	 * @param size
+	 * 会员
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping("/article/list")
-	public List<WebArticle> listArticle(CommonArgs args , @RequestParam(value = "cursor", required = false , defaultValue="9223372036854775807") Long cursor , 
-			@RequestParam(value = "direction", required = false , defaultValue="1") Byte direction , 
-			@RequestParam(value = "size", required = false , defaultValue="10") Integer size) {
-		List<WebArticle> list = webArticleService.getList(args , cursor, direction, size);
-		return list;
+	@RequestMapping("/member")
+	public ModelAndView member() {
+		return new ModelAndView("screen/member");
+	}
+	
+	/**
+	 * 预约
+	 * @return
+	 */
+	@RequestMapping("/reservation")
+	public ModelAndView reservation() {
+		return new ModelAndView("screen/reservation");
+	}
+	
+	/**
+	 * 订单
+	 * @return
+	 */
+	@RequestMapping("/order")
+	public ModelAndView order() {
+		return new ModelAndView("screen/order");
+	}
+	
+	/**
+	 * 转盘
+	 * @return
+	 */
+	@RequestMapping("/rotate")
+	public ModelAndView rotate() {
+		return new ModelAndView("screen/rotate");
+	}
+	
+	/**
+	 * 刮刮乐
+	 * @return
+	 */
+	@RequestMapping("/scratch")
+	public ModelAndView scratch() {
+		return new ModelAndView("screen/scratch");
 	}
 	
 }

@@ -28,6 +28,11 @@ public class WebArticle {
 	private String picUrl;
 	
 	/**
+	 * 插件类型
+	 */
+	private String plugin;
+	
+	/**
 	 * 原文链接
 	 */
 	private String url;
@@ -36,6 +41,11 @@ public class WebArticle {
 	 * 文章详情
 	 */
 	private String detail;
+	
+	/**
+	 * 点击跳转地址
+	 */
+	private String link;
 
 	public Long getId() {
 		return id;
@@ -92,5 +102,22 @@ public class WebArticle {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getPlugin() {
+		return plugin;
+	}
+
+	public void setPlugin(String plugin) {
+		this.plugin = plugin;
+	}
+
 
 }

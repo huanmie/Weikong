@@ -19,4 +19,10 @@ public class MessageEventReceiveVO extends MessageReceiveVO {
 		super.setProperties(root);
 		this.event	 = root.element("Event").getTextTrim();
 	}
+
+	@Override
+	public String toString() {
+		return "MessageEventReceiveVO [event=" + event + "]";
+	}
+	
 }

@@ -1,0 +1,6 @@
+#set($page="news_banner")
+<div class="bottom-space">
+#parse("control/banner.vm")
+#parse("control/viewlist.vm")
+</div>
+#parse("control/bar.vm")

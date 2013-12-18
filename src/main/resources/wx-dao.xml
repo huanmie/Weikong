@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
-	<bean id="userDao" class="com.feetao.web.dao.UserDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userMenuDao" class="com.feetao.web.dao.UserMenuDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userMessageDao" class="com.feetao.web.dao.UserMessageDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userNewsDao" class="com.feetao.web.dao.UserNewsDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebActivityDao" class="com.feetao.web.dao.UserWebActivityDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebAlbumDao" class="com.feetao.web.dao.UserWebAlbumDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebArticleDao" class="com.feetao.web.dao.UserWebArticleDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebBannerDao" class="com.feetao.web.dao.UserWebBannerDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebMemberDao" class="com.feetao.web.dao.UserWebMemberDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebMessageDao" class="com.feetao.web.dao.UserWebMessageDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebResearchDao" class="com.feetao.web.dao.UserWebResearchDao" parent="sqlDaoBaseSupport"/>
-	<bean id="userWebSummaryDao" class="com.feetao.web.dao.UserWebSummaryDao" parent="sqlDaoBaseSupport"/>
-	 
+	<bean id="articleDao" class="com.feetao.web.dao.ArticleDao" parent="sqlDaoBaseSupport"/>
+	<bean id="memberDao" class="com.feetao.web.dao.MemberDao" parent="sqlDaoBaseSupport"/>
+	<bean id="messageDao" class="com.feetao.web.dao.MessageDao" parent="sqlDaoBaseSupport"/>
+	
 </beans>

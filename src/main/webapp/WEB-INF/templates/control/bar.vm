@@ -1,17 +1,12 @@
-<div class="bs-example navbar-fixed-bottom WZ-nav">
-    <div class="bs-glyphicons">
-        <a class="btn btn-default col-xs-4 current" role="button" href="http://api.feetao.com/mini/home">
-            <span class="glyphicon glyphicon-home"></span>
-            <span class="glyphicon-class">首页</span>
-        </a>
-
-        <a class="btn btn-default col-xs-4" role="button" href="http://api.feetao.com/mini/article/panel">
+<div class="navbar-fixed-bottom bar-panel">
+    <div class="bar" >
+        <a class="btn col-xs-6 #if($page=="news_banner") current #end" role="button" href="${urlUtil.news_banner}${urlUtil.anchor}">
             <span class="glyphicon glyphicon-list"></span>
-            <span class="glyphicon-class">功能</span>
+            <span class="glyphicon-class">列表</span>
         </a>
-        <a class="btn btn-default col-xs-4" role="button" href="tel:13948512406">
+        <a class="btn col-xs-6" role="button" href="tel:13948512406">
             <span class="glyphicon glyphicon-earphone"></span>
-            <span class="glyphicon-class">联系电话</span>
+            <span class="glyphicon-class">联系我们</span>
         </a>
     </div>
 </div>

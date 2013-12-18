@@ -1,0 +1,14 @@
+<!-- list -->
+<div class="edge-space">
+	#foreach($news in $newsList)
+    <div class="media">
+    	<a href="$news.link">
+    		<img class="media-object pull-left" data-src="holder.js/80x64" alt="64x64" style="width: 80px; height: 64px;" src="$news.picUrl">
+            <div class="media-body" style = "padding-left:10px">
+    			<h4 class="media-heading">$news.title</h4>
+    			<p class="text-muted">$news.description</p>
+    		</div>
+    	</a>
+    </div>
+	#end
+</div>
