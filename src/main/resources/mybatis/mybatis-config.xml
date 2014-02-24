@@ -2,13 +2,21 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<typeAlias alias="AddressDO" type="com.feetao.web.model.AddressDO" />
 		<typeAlias alias="ArticleDO" type="com.feetao.web.model.ArticleDO" />
 		<typeAlias alias="MemberDO" type="com.feetao.web.model.MemberDO" />
 		<typeAlias alias="MessageDO" type="com.feetao.web.model.MessageDO" />
+		<typeAlias alias="OrderDO" type="com.feetao.web.model.OrderDO" />
+		<typeAlias alias="ProductDO" type="com.feetao.web.model.ProductDO" />
+		<typeAlias alias="WechatDO" type="com.feetao.web.model.WechatDO" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="mybatis/user_article.xml" />
-		<mapper resource="mybatis/user_member.xml" />
-		<mapper resource="mybatis/user_message.xml" />
+		<mapper resource="mybatis/address.xml" />
+		<mapper resource="mybatis/article.xml" />
+		<mapper resource="mybatis/member.xml" />
+		<mapper resource="mybatis/message.xml" />
+		<mapper resource="mybatis/order.xml" />
+		<mapper resource="mybatis/product.xml" />
+		<mapper resource="mybatis/wechat.xml" />
 	</mappers>
 </configuration>

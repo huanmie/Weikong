@@ -1,1 +1,5 @@
-order
+#set($page="order")
+<div class="bottom-space">
+#parse("control/orderlist.vm")
+</div>
+#parse("control/bar.vm")

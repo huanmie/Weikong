@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.feetao.web.service.ChatService;
 import com.feetao.web.service.MessageService;
+import com.feetao.web.service.WechatService;
 import com.feetao.web.wx.vo.MessageReceiveVO;
 import com.feetao.web.wx.vo.MessageSendVO;
 
@@ -22,10 +22,10 @@ import com.feetao.web.wx.vo.MessageSendVO;
  */
 @Controller
 @RequestMapping("/api")
-public class ChatController {
+public class WechatController {
 
 	@Resource
-	private ChatService chatService;
+	private WechatService wechatService;
 
 	@Resource
 	private MessageService messageService;
@@ -37,13 +37,13 @@ public class ChatController {
         	String signature 	= request.getParameter("signature");
         	String timestamp 	= request.getParameter("timestamp");
         	String nonce		= request.getParameter("nonce");
-        	if(chatService.checkSign(signature, timestamp, nonce)) {
+        	if(wechatService.checkSign(signature, timestamp, nonce)) {
         		//分析用户信息
-        		MessageReceiveVO receiver	= chatService.parse(request.getInputStream());
+        		MessageReceiveVO receiver	= wechatService.parse(request.getInputStream());
         		//同步信息到数据库
-        		messageService.addChatMessage(userId, receiver.getFromUserName(), receiver.toString());
+        		messageService.addMessage(userId, receiver.getFromUserName(), receiver.toString());
         		//处理用户请求
-        		MessageSendVO sender		= chatService.hander(userId , receiver);
+        		MessageSendVO sender		= wechatService.hander(userId , receiver);
         		if(sender != null) {
         			PrintWriter out				= response.getWriter();
         			System.out.println(sender.toXML());

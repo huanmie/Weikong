@@ -42,9 +42,12 @@ public class PrepareUtilsInterceptor implements HandlerInterceptor {
 			}
 		} else {
 			iscoming = true;
-			response.addCookie(new Cookie(Constants.COOKIEKEY , cookieValue));
+			Cookie cookie = new Cookie(Constants.COOKIEKEY , cookieValue);
+			cookie.setPath("/");
+			response.addCookie(cookie);
 		}
 		RequestData data = urlContainer.parserCookie(cookieValue);
+		System.out.println("data:" + data);
 		//TODO 需要一个错误跳转地址
 		if(data == null) return false;
 		

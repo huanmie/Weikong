@@ -11,23 +11,13 @@ public class MessageServiceImpl implements MessageService {
 	@Resource
 	private MessageDao messageDao;
 	
-	
 	@Override
-	public void addChatMessage(Long userId , String openId , String content) {
+	public void addMessage(Long userId , String openId , String content) {
 		MessageDO message = new MessageDO();
 		message.setUserId(userId);
 		message.setOpenId(openId);
 		message.setContent(content);
-		messageDao.addChatMessage(message);
-	}
-
-	@Override
-	public void addBoardMessage(Long userId , String openId , String content) {
-		MessageDO message = new MessageDO();
-		message.setUserId(userId);
-		message.setOpenId(openId);
-		message.setContent(content);
-		messageDao.addBoardMessage(message);
+		messageDao.addMessage(message);
 	}
 
 }

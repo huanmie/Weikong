@@ -1,13 +1,14 @@
 package com.feetao.web.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 /**
  * 微信留言消息
  * @author feetao
  */
-public class MessageDO extends BaseDO implements Serializable {
+public class MessageDO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,9 +33,19 @@ public class MessageDO extends BaseDO implements Serializable {
 	private String content;
 
 	/**
-	 * 留言类型
+	 * 状态
 	 */
-	private String namespace;
+	private Byte status;
+	
+	/**
+	 * 创建时间
+	 */
+	private Date gmtCreate;
+	
+	/**
+	 * 更新时间
+	 */
+	private Date gmtModified;
 	
 	public Long getId() {
 		return id;
@@ -68,12 +79,28 @@ public class MessageDO extends BaseDO implements Serializable {
 		this.content = content;
 	}
 
-	public String getNamespace() {
-		return namespace;
+	public Byte getStatus() {
+		return status;
 	}
 
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
+	public void setStatus(Byte status) {
+		this.status = status;
 	}
-	
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
+
 }

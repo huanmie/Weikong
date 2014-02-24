@@ -14,17 +14,16 @@ public class MemberDao extends SqlSessionDaoSupport {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("openId", openId);
 		params.put("userId", userId);
-		return this.getSqlSession().selectOne("userMember.getMemberByOpenIdAndUserId", params);
+		return this.getSqlSession().selectOne("member.getMemberByOpenIdAndUserId", params);
+	}
+
+	public void addMember(MemberDO member) {
+		member.setStatus(StatusType.ONLINE);
+		this.getSqlSession().insert("member.addMember" , member);
 	}
 	
 	public void updateMember(MemberDO member) {
-		this.getSqlSession().update("userMember.updateMember", member);
+		this.getSqlSession().update("member.updateMember", member);
 	}
 	
-	public void insertMember(MemberDO member) {
-		member.setGmtCreate(System.currentTimeMillis());
-		member.setGmtModified(System.currentTimeMillis());
-		member.setStatus(StatusType.PUBLISH);
-		this.getSqlSession().insert("userMember.addMember" , member);
-	}
 }

@@ -1,1 +1,6 @@
-cart
+#set($page="cart")
+<div class="bottom-space">
+#parse("control/buylist.vm")
+#parse("control/addresslist.vm")
+</div>
+#parse("control/bar.vm")

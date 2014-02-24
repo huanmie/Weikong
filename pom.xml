@@ -155,7 +155,7 @@
  		</dependency>
 	</dependencies>
 	<build>
-		<finalName>Weikong</finalName>
+		<finalName>weikong</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>

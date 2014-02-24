@@ -1,8 +1,9 @@
 package com.feetao.web.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class MemberDO extends BaseDO implements Serializable {
+public class MemberDO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,20 +28,35 @@ public class MemberDO extends BaseDO implements Serializable {
 	private String name;
 	
 	/**
-	 * 会员号
-	 */
-	private String memberCode;
-	
-	/**
 	 * 积分
 	 */
 	private Long score;
+	
+	/**
+	 * 来源
+	 */
+	private String source;
 
 	/**
 	 * 上次来的时间
 	 */
-	private Long lastEnter;
+	private Date lastEnter;
+	
+	/**
+	 * 状态
+	 */
+	private Byte status;
 
+	/**
+	 * create time
+	 */
+	private Date gmtCreate;
+
+	/**
+	 * modified time
+	 */
+	private Date gmtModified;
+	
 	public Long getId() {
 		return id;
 	}
@@ -73,14 +89,6 @@ public class MemberDO extends BaseDO implements Serializable {
 		this.name = name;
 	}
 
-	public String getMemberCode() {
-		return memberCode;
-	}
-
-	public void setMemberCode(String memberCode) {
-		this.memberCode = memberCode;
-	}
-
 	public Long getScore() {
 		return score;
 	}
@@ -89,12 +97,43 @@ public class MemberDO extends BaseDO implements Serializable {
 		this.score = score;
 	}
 
-	public Long getLastEnter() {
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public Date getLastEnter() {
 		return lastEnter;
 	}
 
-	public void setLastEnter(Long lastEnter) {
+	public void setLastEnter(Date lastEnter) {
 		this.lastEnter = lastEnter;
 	}
-	
+
+	public Byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
+
+	public Date getGmtCreate() {
+		return gmtCreate;
+	}
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
+	}
+
+	public Date getGmtModified() {
+		return gmtModified;
+	}
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
+	}
 }

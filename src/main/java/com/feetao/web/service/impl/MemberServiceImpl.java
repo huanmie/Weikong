@@ -1,5 +1,7 @@
 package com.feetao.web.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import com.feetao.web.dao.MemberDao;
@@ -18,10 +20,10 @@ public class MemberServiceImpl implements MemberService {
 			member = new MemberDO();
 			member.setUserId(userId);
 			member.setOpenId(openId);
-			member.setLastEnter(System.currentTimeMillis());
-			memberDao.insertMember(member);
+			member.setLastEnter(new Date());
+			memberDao.addMember(member);
 		} else {
-			member.setLastEnter(System.currentTimeMillis());
+			member.setLastEnter(new Date());
 			memberDao.updateMember(member);
 		}
 	}

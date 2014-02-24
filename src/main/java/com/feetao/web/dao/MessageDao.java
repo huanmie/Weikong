@@ -7,17 +7,9 @@ import com.feetao.web.model.MessageDO;
 
 public class MessageDao extends SqlSessionDaoSupport {
 
-	public void addChatMessage(MessageDO message) {
-		message.setGmtCreate(System.currentTimeMillis());
-		message.setGmtModified(System.currentTimeMillis());
-		message.setStatus(StatusType.PUBLISH);
-		this.getSqlSession().insert("userMessage.addChatMessage", message);
+	public void addMessage(MessageDO message) {
+		message.setStatus(StatusType.ONLINE);
+		this.getSqlSession().insert("message.addMessage", message);
 	}
 	
-	public void addBoardMessage(MessageDO message) {
-		message.setGmtCreate(System.currentTimeMillis());
-		message.setGmtModified(System.currentTimeMillis());
-		message.setStatus(StatusType.PUBLISH);
-		this.getSqlSession().insert("userMessage.addBoardMessage", message);
-	}
 }

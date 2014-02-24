@@ -22,7 +22,7 @@ public class UrlContainer {
 	
 	public String get(String key) {
 		if(!key.toLowerCase().startsWith("http")) {
-			key = urls.get(key);
+			key = urls.get(key); 
 			if(StringUtils.isBlank(key)) 
 				key = urls.get("news_banner"); 
 		}

@@ -7,7 +7,7 @@ import org.dom4j.DocumentException;
 import com.feetao.web.wx.vo.MessageReceiveVO;
 import com.feetao.web.wx.vo.MessageSendVO;
 
-public interface ChatService {
+public interface WechatService {
 
 	/**
 	 * 解析消息内容

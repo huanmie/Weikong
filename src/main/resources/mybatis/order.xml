@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	<resultMap id="baseResult" type="OrderDO">
+		<result property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="openId" column="open_id" />
+		<result property="content" column="content" />
+		<result property="name" column="name" />
+		<result property="mobile" column="mobile" />
+		<result property="address" column="address" />
+		<result property="price" column="price" />
+		<result property="status" column="status" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModified" column="gmt_modified" />
+	</resultMap>
+
+	<select id="getOrderList" resultMap="baseResult" parameterType="java.util.Map">
+		select * from user_order where open_id=#{openId} and user_id=#{userId} order by gmt_create desc
+	</select>	
+	
+	<insert id="addOrder" parameterType="OrderDO">
+		insert into user_order(user_id,open_id,content,name,mobile,address,deliverTime,price,status,gmt_create,gmt_modified) 
+		values(#{userId},#{openId},#{content},#{name},#{mobile},#{address},#{deliverTime},#{price},#{status},now(),now());
+	</insert>
+	
+	<update id="updateOrder" parameterType="OrderDO">
+		update user_order set gmt_modified=now()
+		<if test="name!=null">
+			,name = #{name}
+		</if>
+		<if test="mobile!=null">
+			,mobile = #{mobile}
+		</if>
+		<if test="address!=null">
+			,address = #{address}
+		</if>
+		<if test="price">
+			,price = #{price}
+		</if>
+		<if test="status">
+			,status = #{status}
+		</if>
+		where id=#{id}
+		<if test="openId!=null">
+			and open_id= #{openId}
+		</if>
+	</update>
+	
+</mapper>  

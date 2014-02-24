@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="userArticle">
+<mapper namespace="article">
 	<resultMap id="baseResult" type="ArticleDO">
 		<result property="id" column="id" />
 		<result property="userId" column="user_id" />
@@ -21,19 +21,19 @@
 	
 	<select id="getNewsList" resultMap="baseResult" parameterType="java.util.Map">
 		<![CDATA[
-		select * from user_web_article where user_id=#{userId} and status=#{status} and namespace="news" order by gmt_create desc;
+		select * from user_web_article where user_id=#{userId} and item=#{item} and status=#{status} and namespace="news" order by gmt_create desc;
 		]]>
 	</select>
 	
 	<select id="getNewsForwardList" resultMap="baseResult" parameterType="java.util.Map">
 		<![CDATA[
-		select * from user_web_article where user_id=#{userId} and status=#{status} and gmt_create < #{cursor}  and namespace="news" order by gmt_create desc limit #{size};
+		select * from user_web_article where user_id=#{userId} and item=#{item} and status=#{status} and gmt_create < #{cursor}  and namespace="news" order by gmt_create desc limit #{size};
 		]]>
 	</select>
 	
 	<select id="getNewsBackList" resultMap="baseResult" parameterType="java.util.Map">
 		<![CDATA[
-		select * from user_web_article where user_id=#{userId} and status=#{status} and gmt_create > #{cursor}  and namespace="news" order by gmt_create limit #{size};
+		select * from user_web_article where user_id=#{userId} and item=#{item} and status=#{status} and gmt_create > #{cursor}  and namespace="news" order by gmt_create limit #{size};
 		]]>
 	</select>
 	

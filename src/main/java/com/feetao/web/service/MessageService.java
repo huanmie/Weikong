@@ -8,13 +8,6 @@ public interface MessageService {
 	 * @param openId
 	 * @param content
 	 */
-	public void addChatMessage(Long userId , String openId , String content);
+	public void addMessage(Long userId , String openId , String content);
 	
-	/**
-	 * 来自留言板的内容
-	 * @param userId
-	 * @param openId
-	 * @param content
-	 */
-	public void addBoardMessage(Long userId , String openId , String content);
 }

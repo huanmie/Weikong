@@ -1,7 +1,12 @@
-package com.feetao.web.vo;
+package com.feetao.web.model;
 
-public class WebArticle {
+import java.io.Serializable;
+import java.util.Date;
 
+public class WechatDO extends BasePlugin implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * 主键ID
 	 */
@@ -13,12 +18,12 @@ public class WebArticle {
 	private Long userId;
 	
 	/**
-	 * 文章标题
+	 * 标题
 	 */
 	private String title;
 	
 	/**
-	 * 文章描述
+	 * 描述
 	 */
 	private String description;
 	
@@ -28,24 +33,24 @@ public class WebArticle {
 	private String picUrl;
 	
 	/**
-	 * 插件类型
-	 */
-	private String plugin;
-	
-	/**
 	 * 原文链接
 	 */
 	private String url;
 	
 	/**
-	 * 文章详情
+	 * 状态
 	 */
-	private String detail;
+	private Byte status;
 	
 	/**
-	 * 点击跳转地址
+	 * 创建时间
 	 */
-	private String link;
+	private Date gmtCreate;
+	
+	/**
+	 * 更新时间
+	 */
+	private Date gmtModified;
 
 	public Long getId() {
 		return id;
@@ -95,29 +100,28 @@ public class WebArticle {
 		this.url = url;
 	}
 
-	public String getDetail() {
-		return detail;
+	public Byte getStatus() {
+		return status;
 	}
 
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setStatus(Byte status) {
+		this.status = status;
 	}
 
-	public String getLink() {
-		return link;
+	public Date getGmtCreate() {
+		return gmtCreate;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
 	}
 
-	public String getPlugin() {
-		return plugin;
+	public Date getGmtModified() {
+		return gmtModified;
 	}
 
-	public void setPlugin(String plugin) {
-		this.plugin = plugin;
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
 	}
-
-
+	
 }

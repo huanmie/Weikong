@@ -1,0 +1,143 @@
+<style>
+.userInfoList{
+    padding: 0 20px;
+    list-style: none;
+}
+
+.userInfoList li{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+}
+.userInfoList li.selected{
+    color: #F00;
+}
+.userInfoList span{
+    margin-right: 20px;
+}
+
+
+address{
+    margin-bottom: 0;
+}
+.userAdd div{
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+}
+.userAdd div:last-child{
+    border: none;
+}
+.userAdd label{
+    width: 80px;
+    position: absolute;
+    display: inline-block;
+}
+.userAdd input{
+    outline: none;
+    width: 100%;
+    padding-left: 80px;
+    border: none;
+}
+.userAdd{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.info-cache-btn{
+            margin: 0 20px 10px 20px;
+        }
+.userAdd{
+    margin: 0 20px;
+}
+button.buy-btn{
+    display: block;
+    margin: 20px auto;
+}
+.serviceTime{
+    margin: 20px;
+}
+.serviceTime span{
+    margin-right: 40px;
+}
+</style>
+
+<!-- list -->
+<ul class="unstyled userInfoList">
+	#foreach($address in $addressList)
+    <li data-id="$address.id"><span class="userName">$address.name</span><span class="userPhone">$address.mobile</span><address>$address.address</address></li>
+	#end
+</ul>
+
+<div class="info-cache-btn clearfix">
+    <button class="btn pull-left cancel">取消</button><button class="btn pull-right submit">保存</button>
+</div>
+<div class="userAdd">
+    <div><label>姓名：</label><input class="userAdd-name" type="text"/></div>
+    <div><label>手机：</label><input class="userAdd-mobile" type="text"/></div>
+    <div><label>送货地址：</label><input class="userAdd-address" type="text"/></div>
+</div>
+<div class="serviceTime">
+    <label>送达时间：</label><span class="serviceTime-day">请选择日期</span><span class="serviceTime-hour">请选择时段</span>
+</div>
+<button class="buy-btn">立即下单</button>
+
+<script>
+	$(function(){
+		$('.submit').click(function(){
+			var name 	= $('.userAdd-name').val();
+			var mobile	= $('.userAdd-mobile').val();
+			var address = $('.userAdd-address').val();
+			if(jQuery.trim(name) != '' && jQuery.trim(mobile) != '' && jQuery.trim(address) != '') {
+				jQuery.ajax({
+					url:"/address/add",
+					data:{
+						'name':name,
+						'mobile':mobile,
+						'address':address
+					},
+					success:function(json){
+						var li = '<li data-id="' + json.id + '"><span class="userName">'+json.name+'</span><span class="userPhone">'+json.mobile+'</span><address>'+json.address+'</address></li>';
+						$('.userInfoList').append(li);
+            			$('.userAdd-name').val('');
+            			$('.userAdd-mobile').val('');
+            			$('.userAdd-address').val('');
+						
+						$('.userInfoList li:last-child').trigger('click');
+					}
+				})
+			}
+		});
+		
+		$('.userInfoList').delegate('li','click',function(e){
+                    var target = $(e.currentTarget);
+					if(target.hasClass('selected')) return;
+					$('.userInfoList').children().removeClass('selected');
+					target.addClass('selected');
+                });
+		
+		$('.cancel').click(function(){
+			$('.userAdd-name').val('');
+			$('.userAdd-mobile').val('');
+			$('.userAdd-address').val('');
+		});
+		
+		$('.buy-btn').click(function(){
+			var li = $('.selected','.userInfoList');
+			var addressId = li.attr('data-id');
+			if(!addressId) {
+				alert("请选择收货地址");
+				return;
+			}
+			jQuery.ajax({
+				url:"/order/add",
+				data:{
+					'addressId':addressId,
+					'deliverTime':"今天下午5点"
+				},
+				success:function(json){
+					jQuery.objCookie('cart',null);
+					alert('下单成功');
+				}
+			})
+		});
+	})
+</script>

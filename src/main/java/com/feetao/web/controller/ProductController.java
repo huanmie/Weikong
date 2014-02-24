@@ -1,31 +1,38 @@
 package com.feetao.web.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.feetao.web.service.ProductService;
+import com.feetao.web.support.RequestContextHolder;
+import com.feetao.web.support.RequestData;
+
 /**
- * 产品
+ * 商品
  * @author feetao
  */
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
+	@Resource
+	private ProductService productService;
+	
+	@Resource
+	private RequestContextHolder requestContextHolder;
+	
 	@ResponseBody
-	@RequestMapping("/list")
-	public Object listProduct(@RequestParam(value = "cursor", required = false , defaultValue="9223372036854775807") Long cursor , 
-			@RequestParam(value = "direction", required = false , defaultValue="1") Byte direction , 
-			@RequestParam(value = "size", required = false , defaultValue="10") Integer size) {
-		return null;
-	}
-
-	@ResponseBody
-	@RequestMapping("/remove")
-	public Object removeProduct(@RequestParam("id") Long id) {
-		
-		return null;
+	@RequestMapping("/ids")
+	public Object listProductByIds(@RequestParam(value = "ids[]") List<Long> ids) {
+		RequestData data = requestContextHolder.getRequestData();
+		System.out.println("data:" + data);
+		return productService.getProductList(data.getUserId(), ids);
 	}
 
 }

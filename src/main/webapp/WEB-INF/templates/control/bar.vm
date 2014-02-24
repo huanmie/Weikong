@@ -1,12 +1,16 @@
 <div class="navbar-fixed-bottom bar-panel">
     <div class="bar" >
-        <a class="btn col-xs-6 #if($page=="news_banner") current #end" role="button" href="${urlUtil.news_banner}${urlUtil.anchor}">
+        <a class="btn col-xs-4 #if($page=="product") current #end" role="button" href="${urlUtil.product}${urlUtil.anchor}">
             <span class="glyphicon glyphicon-list"></span>
-            <span class="glyphicon-class">列表</span>
+            <span class="glyphicon-class">水果吧</span>
         </a>
-        <a class="btn col-xs-6" role="button" href="tel:13948512406">
-            <span class="glyphicon glyphicon-earphone"></span>
-            <span class="glyphicon-class">联系我们</span>
+		<a class="btn col-xs-4 #if($page=="cart") current #end" role="button" href="${urlUtil.cart}${urlUtil.anchor}">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span class="glyphicon-class">购物筐</span>
+        </a>
+		<a class="btn col-xs-4 #if($page=="order") current #end" role="button" href="${urlUtil.order}${urlUtil.anchor}">
+            <span class="glyphicon glyphicon-edit"></span>
+            <span class="glyphicon-class">订单</span>
         </a>
     </div>
 </div>

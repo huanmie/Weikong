@@ -1,0 +1,5 @@
+#set($page="product")
+<div class="bottom-space">
+#parse("control/productlist.vm")
+</div>
+#parse("control/bar.vm")

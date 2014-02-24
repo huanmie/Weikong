@@ -14,9 +14,9 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.springframework.beans.BeanUtils;
 
-import com.feetao.web.dao.ArticleDao;
-import com.feetao.web.model.ArticleDO;
-import com.feetao.web.service.ChatService;
+import com.feetao.web.dao.WechatDao;
+import com.feetao.web.model.WechatDO;
+import com.feetao.web.service.WechatService;
 import com.feetao.web.support.UrlContainer;
 import com.feetao.web.wx.vo.Article;
 import com.feetao.web.wx.vo.MessageEventReceiveVO;
@@ -30,10 +30,10 @@ import com.feetao.web.wx.vo.MessageTextReceiveVO;
 import com.feetao.web.wx.vo.MessageVideoReceiveVO;
 import com.feetao.web.wx.vo.MessageVoiceReceiveVO;
 
-public class ChatServiceImpl implements ChatService {
+public class WechatServiceImpl implements WechatService {
 
 	@Resource
-	private ArticleDao articleDao;
+	private WechatDao wechatDao;
 	
 	@Resource
 	private UrlContainer urlContainer;
@@ -66,7 +66,7 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public MessageSendVO hander(Long userId , MessageReceiveVO receiver) {
-		List<ArticleDO> newsList = articleDao.getWXNewsList(userId);
+		List<WechatDO> newsList = wechatDao.getWechatList(userId);
 		if(newsList != null && newsList.size() > 0) {
 			MessageNewsSendVO sender = new MessageNewsSendVO();
 			sender.setFromUserName(receiver.getToUserName());
