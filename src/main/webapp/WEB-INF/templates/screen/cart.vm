@@ -1,6 +1,11 @@
 #set($page="cart")
 <div class="bottom-space">
-#parse("control/buylist.vm")
-#parse("control/addresslist.vm")
+#if(!$!productList)
+	#set($info_message="您还没有选购商品")
+	#parse("control/info.vm")
+#else
+	#parse("control/buylist.vm")
+	#parse("control/addresslist.vm")	
+#end
 </div>
 #parse("control/bar.vm")

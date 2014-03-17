@@ -1,6 +1,7 @@
 package com.feetao.web.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -18,6 +19,7 @@ import com.feetao.web.service.OrderService;
 import com.feetao.web.service.ProductService;
 import com.feetao.web.support.RequestContextHolder;
 import com.feetao.web.support.RequestData;
+import com.feetao.web.vo.ProductVO;
 
 /**
  * web页面
@@ -65,7 +67,8 @@ public class WebController {
 		try {
 			@SuppressWarnings("unchecked")
 			Map<Long, Integer> maps = new ObjectMapper().readValue(cart, Map.class);
-			mv.addObject("productList", productService.getProductList(data.getUserId(), new ArrayList<Long>(maps.keySet())));
+			List<ProductVO> products  = productService.getProductList(data.getUserId(), new ArrayList<Long>(maps.keySet()));
+			mv.addObject("productList", products);
 		} catch (Exception e) {}
 		mv.addObject("addressList", addressService.getAddressList(data.getUserId(), data.getOpenId()));
 		return mv;

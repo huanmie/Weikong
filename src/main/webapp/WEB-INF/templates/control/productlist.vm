@@ -16,6 +16,12 @@ p{
 	display: inline-block;
 	min-width: 60px;
 }
+.outer-btn{
+	text-align:right;
+}
+button.buy-btn{
+    margin: 20px 20px;
+}
 </style>
 <!-- list -->
 <div class="edge-space">
@@ -26,7 +32,7 @@ p{
 			<h4 class="media-heading">$product.title</h4>
 			<p class="text-muted">$product.description </p> 
             <p class="item-bar">
-				<span>¥$product.getDotPrice()/$product.unit</span>
+				<span>¥$product.dotPrice/$product.unit</span>
 				<input class="min" name="" type="button" value="-" />
 				<input class="text_box" name="" type="text" value="0" />
 				<input class="add" name="" type="button" value="+" />
@@ -34,9 +40,27 @@ p{
 		</div>
     </div>
 	#end
+    <div class="outer-btn">
+    	<button class="buy-btn">去结算</button>
+    </div>
 </div>
 <script>
     $(function(){
+		$('.buy-btn').click(function(){
+			var obj = jQuery.objCookie('cart');
+			var flag = false;
+			for(var i in obj) {
+				flag = true;
+				break;
+			}
+			
+			if(flag) {
+				window.location.href = "${urlUtil.cart}";
+			} else {
+				alert("请先选择商品");
+			}
+		});
+		
 	   function setCart(id, num){
             var obj = jQuery.objCookie('cart') || {};
             if(num == 0){
@@ -108,7 +132,10 @@ p{
                         num = obj[item.attr('data-id')];
                     if(num){
                         textB.val(num);
-                    }
+                    } else {
+						var min = item.find('.min');
+						min.attr('disabled',true);
+					}
                 }
             }
         };

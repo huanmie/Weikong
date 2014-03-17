@@ -42,16 +42,19 @@ p{
     font-style: normal;
     color: #f00;
 }
+.media{
+	position:relative;
+}
 </style>
 <!-- list -->
 <div class="edge-space">
 	#foreach($product in $productList)
-    <div class="media" data-id="$product.id" data-price="$product.getDotPrice()">
+    <div class="media" data-id="$product.id" data-price="$product.dotPrice">
 		<img class="media-object pull-left" data-src="holder.js/80x64" alt="64x64" style="width:80px; height:64px;" src="$product.picUrl">
         <div class="media-body" style = "padding-left:10px">
 			<h4 class="media-heading">$product.title</h4>
             <p class="item-bar">
-				<span>¥$product.getDotPrice()/$product.unit</span>
+				<span>¥$product.dotPrice/$product.unit</span>
 				<input class="min" name="" type="button" value="-" />
 				<input class="text_box" name="" type="text" value="0" />
 				<input class="add" name="" type="button" value="+" />
@@ -97,6 +100,7 @@ p{
                 textBox = p.find('.text_box');
             textBox.val(parseInt(textBox.val())-1);
             if (parseInt(textBox.val())==0){
+				textBox.val(1);
                 p.find('.min').attr('disabled',true);
             }
             setCart(id, textBox.val());
@@ -130,6 +134,7 @@ p{
                 this.sys();
             },
             bind: function(){
+				var self = this.con;
 				this.con.delegate('.remove-btn','click',function(e){
                     var target = $(e.currentTarget),
                         li     = $(target.parents('.media')[0]);
@@ -137,6 +142,8 @@ p{
                     li.remove();
 					result.sys();
 					setCart(id,0);
+					if(self.children().length == 0)
+						window.location.href = "${urlUtil.product}";
                 });
             },
             sys: function(){
@@ -167,7 +174,6 @@ p{
 			}
         },
        
-		
 		result = {
 			init: function(){
 				this.con = $('.buy-info');
@@ -181,6 +187,5 @@ p{
 		};
 		list.init();
 		result.init();
-
     });
 </script>
