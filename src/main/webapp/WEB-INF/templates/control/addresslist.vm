@@ -94,7 +94,7 @@ button.buy-btn{
     <label>收获地址（点击选择，红色代表选中）：</label>
     <ul class="unstyled boxList userInfoList">
     	#foreach($address in $addressList)
-        <li data-id="$address.id"><span class="remove-addr">x</span><span class="userName">$address.name</span><span class="userPhone">$address.mobile</span>
+        <li data-id="$address.id" class="#if($velocityCount ==1) selected #end"><span class="remove-addr">x</span><span class="userName">$address.name</span><span class="userPhone">$address.mobile</span>
     		<address>$address.address</address></li>
     	#end
     </ul>
@@ -176,16 +176,17 @@ button.buy-btn{
 		$('.remove-addr').click(function(e){
 			var li = $(this).parent('li')
 			var addressId = li.attr('data-id');
-			jQuery.ajax({
-				url:"/address/remove",
-				data:{
-					'id':addressId
-				},
-				success:function(json){
-					li.remove();
-				}
-			})
-
+			if (confirm("确认要该收货地址？")) {
+    			jQuery.ajax({
+    				url:"/address/remove",
+    				data:{
+    					'id':addressId
+    				},
+    				success:function(json){
+    					li.remove();
+    				}
+    			})
+			}
 			return false;
 		});
 		

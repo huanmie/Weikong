@@ -136,14 +136,16 @@ p{
             bind: function(){
 				var self = this.con;
 				this.con.delegate('.remove-btn','click',function(e){
-                    var target = $(e.currentTarget),
-                        li     = $(target.parents('.media')[0]);
-						id	   = li.attr('data-id');
-                    li.remove();
-					result.sys();
-					setCart(id,0);
-					if(self.children().length == 0)
-						window.location.href = "${urlUtil.product}";
+					if (confirm("确认要删除？")) {
+                        var target = $(e.currentTarget),
+                            li     = $(target.parents('.media')[0]);
+    						id	   = li.attr('data-id');
+                        li.remove();
+    					result.sys();
+    					setCart(id,0);
+    					if(self.children().length == 0)
+    						window.location.href = "${urlUtil.product}";
+					}
                 });
             },
             sys: function(){
