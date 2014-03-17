@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.feetao.web.constants.Result;
 import com.feetao.web.support.RequestContextHolder;
-import com.feetao.web.support.RequestData;
 
 /**
  * 转盘
@@ -24,7 +23,8 @@ public class RotateController {
 	@ResponseBody
 	@RequestMapping("/play")
 	public Object play() {
-		RequestData data = requestContextHolder.getRequestData();
+		requestContextHolder.getRequestData();
+		
 		return new Result();
 	}
 

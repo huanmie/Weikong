@@ -13,7 +13,7 @@
 		<result property="gmtModified" column="gmt_modified" />
 	</resultMap>
 
-	<insert id="addAddress" parameterType="AddressDO">
+	<insert id="addAddress" useGeneratedKeys="true" keyProperty="id" parameterType="AddressDO">
 		insert into user_address(user_id,open_id,name,mobile,address,status,gmt_create,gmt_modified) 
 		values(#{userId},#{openId},#{name},#{mobile},#{address},#{status},now(),now())
 	</insert>
