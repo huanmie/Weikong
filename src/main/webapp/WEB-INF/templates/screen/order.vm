@@ -1,5 +1,11 @@
 #set($page="order")
 <div class="bottom-space">
-#parse("control/orderlist.vm")
+<div style="margin: 10px 22px"><a href="tel:15124706234">客服联系电话：15124706234</a></div>
+#if(!$!orderList)
+	#set($info_message="您还没有订单")
+	#parse("control/info.vm")
+#else
+	#parse("control/orderlist.vm")
+#end
 </div>
 #parse("control/bar.vm")
