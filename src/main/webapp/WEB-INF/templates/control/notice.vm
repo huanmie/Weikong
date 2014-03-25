@@ -1,0 +1,34 @@
+<style>
+.notice{
+	margin:10px;
+	padding:10px 0px;
+	text-align:center;
+	background-color:#eee;
+	border-radius: 3px;
+}
+</style>
+<div id="xxx" class="notice">
+	<div style="display:none">
+		<div class="modal-title">获奖名单ss</div>
+		<div class="modal-body">
+			<div>一等奖：内蒙古大学-二号楼-611</div>
+			<div>二等奖：内蒙古大学-二号楼-613</div>
+			<div>三等奖：内蒙古大学-二号楼-614</div>
+			<img src="http://d.hiphotos.baidu.com/image/w%3D2048/sign=92787fe0ab014c08193b2fa53e430308/d6ca7bcb0a46f21fc555ac1af4246b600c33ae12.jpg" />
+		</div>
+	</div>
+	邀请好友获取积分
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>

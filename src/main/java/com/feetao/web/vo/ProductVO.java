@@ -93,7 +93,7 @@ public class ProductVO {
 	}
 	
 	public String getDotPrice() {
-		return String.format("%.2f", (double)(price/100));
+		return String.format("%.2f", (double)price/100);
 	}
 
 }

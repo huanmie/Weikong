@@ -20,22 +20,39 @@ p{
 	text-align:right;
 }
 button.buy-btn{
-    margin: 20px 20px;
+    margin: 10px 0px;
 }
 </style>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel"></h4>
+			</div>
+			<div class="modal-body">
+			</div>
+		</div>
+	</div>
+</div>
 <!-- list -->
 <div class="edge-space">
 	#foreach($product in $productList)
-    <div class="media" data-id="$product.id">
-		<img class="media-object pull-left" data-src="holder.js/80x64" alt="64x64" style="width:80px; height:64px;" src="$product.picUrl">
-        <div class="media-body" style = "padding-left:10px">
+    <div class="media" data-id="$product.id" data-toggle="modal" data-target="#myModal">
+		<img class="media-object pull-left" data-src="holder.js/80x80" alt="" style="width:80px; height:64px;" src="$product.picUrl">
+        <div class="media-body" style="padding-left:10px">
 			<h4 class="media-heading">$product.title</h4>
-			<p class="text-muted">$product.description </p> 
+			<div class="modal-title" style="display:none">${product.title}-实景图(敬请期待...)</div>
+			<div class="modal-body" style="display:none"><img src="$product.picUrl" /></div>
+			<p class="text-muted">$product.description </p>
             <p class="item-bar">
 				<span>¥$product.dotPrice/$product.unit</span>
-				<input class="min" name="" type="button" value="-" />
-				<input class="text_box" name="" type="text" value="0" />
-				<input class="add" name="" type="button" value="+" />
+				<span style="float:right">
+					<input class="min" name="" type="button" value="-" />
+					<input class="text_box" name="" type="text" value="0" />
+					<input class="add" name="" type="button" value="+" />
+				</span>
 			</p>
 		</div>
     </div>
@@ -46,6 +63,10 @@ button.buy-btn{
 </div>
 <script>
     $(function(){
+		$('#myModal').on('show.bs.modal', function (e) {
+			$(".modal-title" , $(e.target)).html($('.modal-title',$(e.relatedTarget)).html());
+			$(".modal-body" , $(e.target)).html($('.modal-body',$(e.relatedTarget)).html());
+		})
 		$('.buy-btn').click(function(){
 			var obj = jQuery.objCookie('cart');
 			var flag = false;
@@ -70,7 +91,6 @@ button.buy-btn{
             }
             jQuery.objCookie('cart',obj);
         }
-       // var textBoxs = $(".text_box");
         $(".add").click(function(e){
             var target = $(e.target),
                 p      = target.parent(),
@@ -82,7 +102,7 @@ button.buy-btn{
                 p.find('.min').attr('disabled',false);
             }
             setCart(id, textBox.val());
-            // setTotal();
+			return false;
         });
         $(".min").click(function(e){
             var target = $(e.target),
@@ -95,7 +115,7 @@ button.buy-btn{
                 p.find('.min').attr('disabled',true);
             }
             setCart(id, textBox.val());
-            // setTotal();
+			return false;
         });
         $('.text_box').blur(function(e){
             var target = $(e.target),
@@ -113,6 +133,7 @@ button.buy-btn{
                 target.parent().find('.min').attr('disabled',true);
             }
             setCart(id, target.val());
+			return false;
         });
 
        var list = {
