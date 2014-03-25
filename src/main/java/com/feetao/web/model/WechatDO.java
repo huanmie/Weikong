@@ -43,6 +43,16 @@ public class WechatDO extends BasePlugin implements Serializable {
 	private Byte status;
 	
 	/**
+	 * 消息类型
+	 */
+	private String msgType;
+	
+	/**
+	 * 匹配关键字
+	 */
+	private String msgKey;
+	
+	/**
 	 * 创建时间
 	 */
 	private Date gmtCreate;
@@ -106,6 +116,22 @@ public class WechatDO extends BasePlugin implements Serializable {
 
 	public void setStatus(Byte status) {
 		this.status = status;
+	}
+	
+	public String getMsgType() {
+		return msgType;
+	}
+
+	public void setMsgType(String msgType) {
+		this.msgType = msgType;
+	}
+
+	public String getMsgKey() {
+		return msgKey;
+	}
+
+	public void setMsgKey(String msgKey) {
+		this.msgKey = msgKey;
 	}
 
 	public Date getGmtCreate() {
