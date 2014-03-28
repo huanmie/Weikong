@@ -1,5 +1,7 @@
 package com.feetao.web.wx.vo;
 
+import org.apache.commons.lang.StringUtils;
+
 public class Article {
 	
 	private String title;
@@ -46,7 +48,7 @@ public class Article {
 		sb.append("<item>");
 		sb.append("<Title><![CDATA[").append(title).append("]]></Title>");
 		sb.append("<Description><![CDATA[").append(description).append("]]></Description>");
-		sb.append("<PicUrl><![CDATA[").append(picUrl).append("]]></PicUrl>");
+		if(!StringUtils.isBlank(picUrl))sb.append("<PicUrl><![CDATA[").append(picUrl).append("]]></PicUrl>");
 		sb.append("<Url><![CDATA[").append(url).append("]]></Url>");
 		sb.append("</item>");
 	}

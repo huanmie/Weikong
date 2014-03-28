@@ -10,6 +10,8 @@
 		<result property="url" column="url" />
 		<result property="plugin" column="plugin" />
 		<result property="status" column="status" />
+		<result property="msgType" column="msg_type" />
+		<result property="msgKey" column="msg_key" />
 		<result property="gmtCreate" column="gmt_create" />
 		<result property="gmtModified" column="gmt_modified" />
 	</resultMap>

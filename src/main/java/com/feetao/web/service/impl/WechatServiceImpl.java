@@ -5,9 +5,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -27,6 +30,7 @@ import com.feetao.web.wx.vo.MessageNewsSendVO;
 import com.feetao.web.wx.vo.MessageReceiveVO;
 import com.feetao.web.wx.vo.MessageSendVO;
 import com.feetao.web.wx.vo.MessageTextReceiveVO;
+import com.feetao.web.wx.vo.MessageTextSendVO;
 import com.feetao.web.wx.vo.MessageVideoReceiveVO;
 import com.feetao.web.wx.vo.MessageVoiceReceiveVO;
 
@@ -66,18 +70,38 @@ public class WechatServiceImpl implements WechatService {
 
 	@Override
 	public MessageSendVO hander(Long userId , MessageReceiveVO receiver) {
-		List<WechatDO> newsList = wechatDao.getWechatList(userId);
-		if(newsList != null && newsList.size() > 0) {
-			MessageNewsSendVO sender = new MessageNewsSendVO();
-			sender.setFromUserName(receiver.getToUserName());
-			sender.setToUserName(receiver.getFromUserName());
-			sender.setCreateTime((int)(System.currentTimeMillis()/1000));
-			sender.setMsgType("news");
-			for(int i = 0 ; i < newsList.size() ; i++) {
-				Article article = new Article();
-				BeanUtils.copyProperties(newsList.get(i), article);
-				article.setUrl(urlContainer.createComingLink(newsList.get(i).getPlugin(), userId, receiver.getFromUserName(), receiver.getToUserName()));
-				sender.addArticle(article);
+		List<WechatDO> chatList = wechatDao.getWechatList(userId);
+		if(chatList != null && chatList.size() > 0) {
+			MessageSendVO sender = null;
+			WechatDO wdo = null;
+			for(int i = 0 ; i < chatList.size() ; i++) {
+				WechatDO cdo = chatList.get(i);
+				if(cdo.getMsgKey().equals(".*")) {
+					wdo = cdo;
+					continue;
+				}
+				Matcher matcher = Pattern.compile(cdo.getMsgKey()).matcher(receiver.toString());
+				if(matcher.find()) {
+					wdo = cdo;
+					break;
+				}
+			}
+			if(wdo != null) {
+				if(wdo.getMsgType().equals("news")) {
+					sender = new MessageNewsSendVO();
+					Article article = new Article();
+					BeanUtils.copyProperties(wdo, article);
+					if(StringUtils.isBlank(article.getUrl()))
+						article.setUrl(urlContainer.createComingLink(wdo.getPlugin(), userId, receiver.getFromUserName(), receiver.getToUserName()));
+					((MessageNewsSendVO)sender).addArticle(article);
+				} else if(wdo.getMsgType().equals("text")) {
+					sender = new MessageTextSendVO();
+					((MessageTextSendVO)sender).setContent(wdo.getDescription());
+				}
+				sender.setFromUserName(receiver.getToUserName());
+				sender.setToUserName(receiver.getFromUserName());
+				sender.setCreateTime((int)(System.currentTimeMillis()/1000));
+				sender.setMsgType(wdo.getMsgType());
 			}
 			return sender;
 		}
