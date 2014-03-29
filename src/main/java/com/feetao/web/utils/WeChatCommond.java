@@ -44,14 +44,14 @@ public class WeChatCommond {
 
     public static void main(String[] args) throws Exception {
     	getAccessToken();
-    	String menu = "{\"button\":[" +
-    			"{\"type\":\"click\",\"name\":\"进入超市\",\"key\":\"商城\"}," +
-    			"{\"type\":\"click\",\"name\":\"投票\",\"key\":\"投票\"}," +
-    			"{\"name\":\"菜单\",\"sub_button\":[" +
-    				"{\"type\":\"view\",\"name\":\"搜索\",\"url\":\"http://www.soso.com/\"}," +
-    				"{\"type\":\"view\",\"name\":\"视频\",\"url\":\"http://v.qq.com/\"}," +
-    				"{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}]" +
-    			"}]}";
+//    	String menu = "{\"button\":[" +
+//    			"{\"type\":\"click\",\"name\":\"进入超市\",\"key\":\"商城\"}," +
+//    			"{\"type\":\"click\",\"name\":\"投票\",\"key\":\"投票\"}," +
+//    			"{\"name\":\"菜单\",\"sub_button\":[" +
+//    				"{\"type\":\"view\",\"name\":\"搜索\",\"url\":\"http://www.soso.com/\"}," +
+//    				"{\"type\":\"view\",\"name\":\"视频\",\"url\":\"http://v.qq.com/\"}," +
+//    				"{\"type\":\"click\",\"name\":\"赞一下我们\",\"key\":\"V1001_GOOD\"}]" +
+//    			"}]}";
     	String currentMenu = "{\"button\":[" +
     			"{\"type\":\"click\",\"name\":\"进入超市\",\"key\":\"商城\"}," +
     			"{\"type\":\"click\",\"name\":\"投票\",\"key\":\"投票\"}" +

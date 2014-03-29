@@ -1,0 +1,27 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(function(){
+		var relatedTarget;
+		$(".notice").click(function(e){
+			relatedTarget = $(e.target);
+			$('#myModal').modal('show');
+		})
+		
+		$('#myModal').on('show.bs.modal', function (e) {
+			$('.modal-title', $(e.target)).html($('.modal-title', relatedTarget).html());
+			$('.modal-body' , $(e.target)).html($('.modal-body' , relatedTarget).html());
+		})
+	})()
+</script>
