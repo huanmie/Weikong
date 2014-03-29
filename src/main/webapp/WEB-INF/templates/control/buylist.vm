@@ -50,7 +50,7 @@ p{
 <div class="edge-space">
 	#foreach($product in $productList)
     <div class="media" data-id="$product.id" data-price="$product.dotPrice">
-		<img class="media-object pull-left" data-src="holder.js/80x64" alt="64x64" style="width:80px; height:64px;" src="$product.picUrl">
+		<img class="media-object pull-left" data-src="holder.js/80x64" alt="" style="width:80px; height:64px;" src="$product.thumbnail">
         <div class="media-body" style = "padding-left:10px">
 			<h4 class="media-heading">$product.title</h4>
             <p class="item-bar">

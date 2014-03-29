@@ -22,10 +22,15 @@ public class ProductVO {
 	private String description;
 
 	/**
-	 * 文章图片链接
+	 * 缩略图
 	 */
-	private String picUrl;
+	private String thumbnail;
 
+	/**
+	 * 原图
+	 */
+	private String picture;
+	
 	/**
 	 * 价格
 	 */
@@ -36,6 +41,11 @@ public class ProductVO {
 	 */
 	private String unit;
 
+	/**
+	 * 销量
+	 */
+	private Integer sales;
+	
 	public Long getId() {
 		return id;
 	}
@@ -68,12 +78,20 @@ public class ProductVO {
 		this.description = description;
 	}
 
-	public String getPicUrl() {
-		return picUrl;
+	public String getThumbnail() {
+		return thumbnail;
 	}
 
-	public void setPicUrl(String picUrl) {
-		this.picUrl = picUrl;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public Long getPrice() {
@@ -90,6 +108,14 @@ public class ProductVO {
 
 	public void setUnit(String unit) {
 		this.unit = unit;
+	}
+	
+	public Integer getSales() {
+		return sales;
+	}
+	
+	public void setSales(Integer sales) {
+		this.sales = sales;
 	}
 	
 	public String getDotPrice() {

@@ -6,9 +6,11 @@
 		<result property="userId" column="user_id" />
 		<result property="title" column="title" />
 		<result property="description" column="description" />
-		<result property="picUrl" column="picUrl" />
+		<result property="thumbnail" column="thumbnail" />
+		<result property="picture" column="picture" />
 		<result property="price" column="price" />
 		<result property="unit" column="unit" />
+		<result property="sales" column="sales" />
 		<result property="status" column="status" />
 		<result property="gmtCreate" column="gmt_create" />
 		<result property="gmtModified" column="gmt_modified" />

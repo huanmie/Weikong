@@ -40,11 +40,11 @@ button.buy-btn{
 <div class="edge-space">
 	#foreach($product in $productList)
     <div class="media" data-id="$product.id" data-toggle="modal" data-target="#myModal">
-		<img class="media-object pull-left" data-src="holder.js/80x80" alt="" style="width:80px; height:64px;" src="$product.picUrl">
+		<img class="media-object pull-left" data-src="holder.js/80x80" alt="" style="width:80px; height:64px;" src="$product.thumbnail">
         <div class="media-body" style="padding-left:10px">
 			<h4 class="media-heading">$product.title</h4>
 			<div class="modal-title" style="display:none">${product.title}-实景图(敬请期待...)</div>
-			<div class="modal-body" style="display:none"><img src="$product.picUrl" /></div>
+			<div class="modal-body" style="display:none"><img src="$product.picture" /></div>
 			<p class="text-muted">$product.description </p>
             <p class="item-bar">
 				<span>¥$product.dotPrice/$product.unit</span>
