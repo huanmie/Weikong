@@ -18,6 +18,11 @@ public class ProductDO implements Serializable {
 	private Long userId;
 
 	/**
+	 * 分类
+	 */
+	private String item;
+	
+	/**
 	 * 标题
 	 */
 	private String title;
@@ -41,6 +46,11 @@ public class ProductDO implements Serializable {
 	 * 价格
 	 */
 	private Long price;
+	
+	/**
+	 * 当前价格
+	 */
+	private Long currPrice;
 
 	/**
 	 * 单位
@@ -161,6 +171,22 @@ public class ProductDO implements Serializable {
 
 	public void setGmtModified(Date gmtModified) {
 		this.gmtModified = gmtModified;
+	}
+
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+
+	public Long getCurrPrice() {
+		return currPrice;
+	}
+
+	public void setCurrPrice(Long currPrice) {
+		this.currPrice = currPrice;
 	}
 
 }

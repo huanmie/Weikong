@@ -45,12 +45,12 @@ public class OrderController {
 		RequestData data = requestContextHolder.getRequestData();
 		try {
 			@SuppressWarnings("unchecked")
-			Map<String, String> map  = new ObjectMapper().readValue(cart, Map.class);
+			Map<String, Integer> map  = new ObjectMapper().readValue(cart, Map.class);
 			Map<Long , Integer> tMap = new HashMap<Long, Integer>();
 			Iterator<String> iterator = map.keySet().iterator();
 		    while (iterator.hasNext()) {
 		    	String key = iterator.next();
-		    	tMap.put(Long.parseLong(key), Integer.parseInt(map.get(key)));
+		    	tMap.put(Long.parseLong(key), map.get(key));
 		    }
 			if(tMap.size() > 0) {
 				StringBuilder sb = new StringBuilder();

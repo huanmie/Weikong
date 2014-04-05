@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="item">
+	<resultMap id="baseResult" type="ItemDO">
+		<result property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="itemName" column="itemName" />
+		<result property="item" column="item" />
+		<result property="status" column="status" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModified" column="gmt_modified" />
+	</resultMap>
+	
+	<select id="getItemList" resultMap="baseResult" parameterType="java.util.Map">
+		select * from user_item where user_id=#{userId} and status=#{status} order by factor desc
+	</select>
+	
+</mapper>  

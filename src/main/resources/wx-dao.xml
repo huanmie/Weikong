@@ -8,6 +8,7 @@
 
 	<bean id="addressDao" class="com.feetao.web.dao.AddressDao" parent="sqlDaoBaseSupport"/>
 	<bean id="articleDao" class="com.feetao.web.dao.ArticleDao" parent="sqlDaoBaseSupport"/>
+	<bean id="itemDao" class="com.feetao.web.dao.ItemDao" parent="sqlDaoBaseSupport"/>
 	<bean id="memberDao" class="com.feetao.web.dao.MemberDao" parent="sqlDaoBaseSupport"/>
 	<bean id="messageDao" class="com.feetao.web.dao.MessageDao" parent="sqlDaoBaseSupport"/>
 	<bean id="orderDao" class="com.feetao.web.dao.OrderDao" parent="sqlDaoBaseSupport"/>

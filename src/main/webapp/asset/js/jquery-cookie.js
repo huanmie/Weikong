@@ -3,8 +3,7 @@ jQuery.objCookie = function(name,value,options) {
 	options.path = '/';
 	if(typeof value != 'undefined') {
 		if(value) {
-			jsonStr = JSON.stringify(value);
-			jQuery.cookie(name,jsonStr,options);
+			jQuery.cookie(name,JSON.stringify(value),options);
 		} else {
 			jQuery.cookie(name,value,options);
 		}

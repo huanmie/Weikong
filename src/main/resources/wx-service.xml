@@ -7,6 +7,7 @@
 
 	<bean id="addressService" class="com.feetao.web.service.impl.AddressServiceImpl" />
 	<bean id="articleService" class="com.feetao.web.service.impl.ArticleServiceImpl" />
+	<bean id="itemService" class="com.feetao.web.service.impl.ItemServiceImpl" />
 	<bean id="memberService" class="com.feetao.web.service.impl.MemberServiceImpl" />
 	<bean id="messageService" class="com.feetao.web.service.impl.MessageServiceImpl" />
 	<bean id="orderService" class="com.feetao.web.service.impl.OrderServiceImpl" />

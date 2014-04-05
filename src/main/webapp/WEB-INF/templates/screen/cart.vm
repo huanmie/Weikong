@@ -1,11 +1,99 @@
-#set($page="cart")
-<div class="bottom-space">
-#if(!$!productList)
-	#set($info_message="您还没有选购商品")
-	#parse("control/info.vm")
-#else
-	#parse("control/buylist.vm")
-	#parse("control/addresslist.vm")	
-#end
+#set($page="cart");
+<!-- 页面容器start -->
+<div id="productPage" data-role="page" data-theme="a">
+	<!-- 页眉部分start -->
+	#parse("control/header.vm")
+	
+	#if(!$!productList)
+		#set($info_message="您还没有选购商品")
+		#parse("control/info.vm")
+	#else
+	<!-- content部分start -->
+	<div id="productList" class="ui-content">
+		<ul data-role="listview" data-icon="false">
+			#foreach($product in $productList)
+			<li data-id="$product.id" data-price="$product.dotPrice" data-min="1">
+			<a href="#custom-$product.id" data-rel="popup">
+				<img src="$product.thumbnail">
+		    	<h2>$product.title
+					<small>
+					#if($product.currPrice)
+						¥$product.dotCurrPrice/$product.unit<span class="custom-decoration">原价¥$product.dotPrice</span>
+					#else
+						¥$product.dotPrice/$product.unit
+					#end
+					</small>
+				</h2>
+		    	<p>销量:$product.sales</p>
+			</a>
+			<div class="ui-li-aside remove_btn" style="right:8px;top:8px">x</div>
+			<div class="ui-li-aside" data-role="controlgroup" data-type="horizontal" data-mini="true" style="right:5px;top:40px">
+			    <a href="javascript:;" class="productMinus ui-shadow ui-btn custom-btn custom-btn-icon">-</a>
+			    <a href="javascript:;" class="productCount ui-shadow ui-btn custom-btn">0</a>
+			    <a href="javascript:;" class="productPlus ui-shadow ui-btn custom-btn custom-btn-icon">+</a>
+			</div>
+			<div data-role="popup" id="custom-$product.id" data-overlay-theme="b" data-theme="a" data-position-to="window" class="custom-popup">
+				<a href="javascript:;" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">close</a>					    
+				<div data-role="header" data-theme="a">
+					<h1>${product.title} 实物图</h1>
+			    </div>
+			    <div role="main" class="ui-content">
+					<div class="custom-center">
+						<img src="$product.picture" style="max-width:100%">
+					</div>
+					$product.description
+			    </div>
+			</div>
+		    </li>
+			#end
+		</ul>
+	</div>
+	<div id="deliverAddress" class="ui-content"  data-theme="a">
+		<ul class="radioList" data-role="listview" data-inset="true" data-ajax="true" data-split-icon="delete">
+		    <li data-role="list-divider">点击选择收获地址 <a href="#addressDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-li-count">添加收获地址</a></li>
+			#foreach($address in $addressList)
+				<li data-id="$address.id">
+					<a href="javascript:;" class="radio">
+						<h2>$address.name - $address.mobile</h2>
+						<p>$address.address</p>
+					</a>
+					<a href="javascript:;" class="remove-address">Purchase album</a>
+				</li>
+			#end
+		</ul>
+		<div data-role="popup" id="addressDialog" data-overlay-theme="b" data-theme="a" data-position-to="window" class="custom-popup">
+		    <div data-role="header" data-theme="a">
+				<h1>添加收获地址</h1>
+		    </div>
+		    <div role="main" class="ui-content">
+				<input type="text" name="name" value="" placeholder="姓名">
+				<input type="text" name="mobile"value="" placeholder="手机号码">
+				<textarea name="address" value="" placeholder="收获地址"></textarea>
+				<a href="javascript:;" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a add-address">保存</a>
+				<a href="javascript:;" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back" data-transition="flow">取消</a>
+		    </div>
+		</div>
+	</div>
+	<div id="deliverTime" class="ui-content">
+		<ul class="radioList" data-role="listview" data-inset="true" data-icon="false" >
+		    <li data-role="list-divider">点击选择送货时间</li>
+		    <li data-id="1" date-suffix="11:00-13:00">
+				<a href="javascript:;" class="radio"><h2 class="custom-center">今日中午(11:00-13:00) 11:00前选择</h5></a>
+			</li>
+		    <li data-id="2" date-suffix="17:00-19:00">
+				<a href="javascript:;" class="radio"><h2 class="custom-center">今日下午(17:00-19:00) 17:00前选择</h2></a>
+			</li>
+		    <li data-id="3" date-suffix="11:00-13:00">
+				<a href="javascript:;" class="radio"><h2 class="custom-center">明日中午(11:00-13:00)</h2></a>
+			</li>
+		    <li data-id="4" date-suffix="17:00-19:00">
+				<a href="javascript:;" class="radio"><h2 class="custom-center">明日下午(17:00-19:00)</h2></a>
+			</li>
+		</ul>
+	</div>
+	#end
+	<!-- 页脚部分start -->
+	#parse("control/footer.vm")
+	
+	#parse("control/popup.vm")
 </div>
-#parse("control/bar.vm")

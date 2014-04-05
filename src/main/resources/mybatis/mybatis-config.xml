@@ -4,6 +4,7 @@
 	<typeAliases>
 		<typeAlias alias="AddressDO" type="com.feetao.web.model.AddressDO" />
 		<typeAlias alias="ArticleDO" type="com.feetao.web.model.ArticleDO" />
+		<typeAlias alias="ItemDO" type="com.feetao.web.model.ItemDO" />
 		<typeAlias alias="MemberDO" type="com.feetao.web.model.MemberDO" />
 		<typeAlias alias="MessageDO" type="com.feetao.web.model.MessageDO" />
 		<typeAlias alias="OrderDO" type="com.feetao.web.model.OrderDO" />
@@ -13,6 +14,7 @@
 	<mappers>
 		<mapper resource="mybatis/address.xml" />
 		<mapper resource="mybatis/article.xml" />
+		<mapper resource="mybatis/item.xml" />
 		<mapper resource="mybatis/member.xml" />
 		<mapper resource="mybatis/message.xml" />
 		<mapper resource="mybatis/order.xml" />

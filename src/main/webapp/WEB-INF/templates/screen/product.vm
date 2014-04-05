@@ -1,5 +1,48 @@
-#set($page="product")
-<div class="bottom-space">
-#parse("control/productlist.vm")
+#set($page="product");
+<!-- 页面容器start -->
+<div id="productPage" data-role="page" data-theme="a">
+	<!-- 页眉部分start -->
+	#parse("control/header.vm")
+	<!-- content部分start -->
+	<div id="productList" class="ui-content">
+		<ul data-role="listview" data-icon="false">
+		    <li data-role="list-divider">商品列表</li>
+			#foreach($product in $productList)
+			<li data-id="$product.id" data-price="$product.dotPrice" data-min="0">
+			<a href="#custom-$product.id" data-rel="popup">
+				<img src="$product.thumbnail">
+		    	<h2>$product.title
+					<small>
+					#if($product.currPrice)
+						¥$product.dotCurrPrice/$product.unit<span class="custom-decoration">原价¥$product.dotPrice</span>
+					#else
+						¥$product.dotPrice/$product.unit
+					#end
+					</small>
+				</h2>
+		    	<p>销量:$product.sales</p>
+			</a>
+			<div class="ui-li-aside" data-role="controlgroup" data-type="horizontal" data-mini="true" style="right:5px;top:40px">
+			    <a href="javascript:;" class="productMinus ui-shadow ui-btn custom-btn custom-btn-icon">-</a>
+			    <a href="javascript:;" class="productCount ui-shadow ui-btn custom-btn">0</a>
+			    <a href="javascript:;" class="productPlus ui-shadow ui-btn custom-btn custom-btn-icon">+</a>
+			</div>
+			<div data-role="popup" id="custom-$product.id" data-overlay-theme="b" data-theme="a" data-position-to="window" class="custom-popup">
+				<a href="javascript:;" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">close</a>					    
+				<div data-role="header" data-theme="a">
+					<h1>${product.title} 实物图</h1>
+			    </div>
+			    <div role="main" class="ui-content">
+					<div class="custom-center">
+						<img src="$product.picture" style="max-width:100%">
+					</div>
+					$product.description
+			    </div>
+			</div>
+		    </li>
+			#end
+		</ul>
+	</div>
+	<!-- 页脚部分start -->
+	#parse("control/footer.vm")
 </div>
-#parse("control/bar.vm")

@@ -54,8 +54,12 @@ public class WeChatCommond {
 //    			"}]}";
     	String currentMenu = "{\"button\":[" +
     			"{\"type\":\"click\",\"name\":\"进入超市\",\"key\":\"商城\"}," +
-    			"{\"type\":\"click\",\"name\":\"投票\",\"key\":\"投票\"}" +
-    			"]}";
+    			"{\"type\":\"click\",\"name\":\"宿舍投票\",\"key\":\"投票\"}," +
+    			"{\"name\":\"公告\",\"sub_button\":[" +
+					"{\"type\":\"view\",\"name\":\"投票结果\",\"url\":\"http://mp.weixin.qq.com/s?__biz=MzA4MDIwNjYzMQ==&mid=200126911&idx=1&sn=71d71884ff9e7be855c6699f39d14bb7#rd\"}," +
+					"{\"type\":\"view\",\"name\":\"最新活动\",\"url\":\"http://mp.weixin.qq.com/s?__biz=MzA4MDIwNjYzMQ==&mid=200126316&idx=2&sn=738e72dcb720c38a428b5302b4725630#rd\"}," +
+					"{\"type\":\"view\",\"name\":\"招商公告\",\"url\":\"http://mp.weixin.qq.com/s?__biz=MzA4MDIwNjYzMQ==&mid=200126316&idx=1&sn=5e9a0280edfa2609d9fad35607e8fe87#rd\"}]" +
+				"}]}";
     	createMenu(currentMenu);
     }
 	
