@@ -182,8 +182,8 @@
 			                <targetPath>WEB-INF/classes</targetPath>  
 			                <!-- enable filtering -->  
 			                <filtering>true</filtering>  
-			                <includes>  
-			                    <include>attr.properties</include>  
+			                <includes>
+			                    <include>config.properties</include>  
 			                </includes>  
 			            </resource>  
 			        </webResources>  

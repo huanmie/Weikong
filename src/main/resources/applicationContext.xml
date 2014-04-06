@@ -5,27 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- Resource注解注入工具 -->
-	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
-	
+	<context:annotation-config/>
+	<context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true" /> 
 	<!-- beans -->
 	<import resource="classpath*:wx-*.xml" />
-	
-	<!-- support -->
-	<bean id="requestContextHolder" class="com.feetao.web.support.RequestContextHolder" />
-	<bean id="urlContainer" class="com.feetao.web.support.UrlContainer">
-		<property name="urls">
-		   	<map>
-		   		<!-- common -->
-		   		<entry key="assets" value="http://assets.feetao.com" />
-		   		<entry key="anchor" value="#mp.weixin.qq.com" />
-		   		<!-- plugin -->
-		   		<entry key="product" value="http://m.feetao.com/mini/product" /> 			<!-- 商品 -->
-		    	<entry key="order" value="http://m.feetao.com/mini/order" />				<!-- 订单 -->
-		    	<entry key="cart" value="http://m.feetao.com/mini/cart" />					<!-- 购物车 -->
-		    	<entry key="news_banner" value="http://m.feetao.com/mini/news_banner" /> 	<!-- 新闻 -->
-		    	<entry key="rotate" value="http://m.feetao.com/mini/rotate" />				<!-- 转盘 -->
-		   	</map>
-	  	</property>
-	</bean>
 </beans>

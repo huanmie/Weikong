@@ -19,6 +19,6 @@
 			myURL.cart		= '${urlUtil.cart}';	
 			myURL.order		= '${urlUtil.order}';
 		</script>
-		<script src="${urlUtil.assets}/asset/js/ss.js"></script>
+		<script src="${urlUtil.assets}/asset/js/custom.js"></script>
 	</body>
 </html>

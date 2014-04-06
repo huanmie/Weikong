@@ -1,44 +1,40 @@
-var FT = {
-	confirm:function(t, q , fn){
-		
+var ft={
+	isEmpty:function(obj){
+		for(var n in obj)
+			return false;
+		return true; 
 	},
-	alert:function(t, q, fn) {
-		
+	alert:function(c,t){
+		 $("#alert h1").html(t||"提示信息");
+         $("#alert p").html(c);
+         $("#alert").popup("open");
 	},
-	popup:function(t,c,fn){
-		 $("#popupDialog h1").html(t);
-         $("#popupDialog p").html(c);
-         if(fn) {
-        	 $("#popupDialog").unbind("popupafterclose").bind("popupafterclose", function() { fn(); });
-         }
-         $("#popupDialog").popup("open");
+	confirm:function(c,fn,t) {
+		$("#confirm h1").text(t||"提示信息");
+		$("#confirm p").text(c);
+		$("#confirm .OK").unbind().on("tap", function() {
+			fn();
+		});
+		$("#confirm").popup("open");
+	},
+	popup:function(){
 	}
-};
-
-
+}
 
 $(document).on("pageinit","#productPage",function(){
 	var list = {
 		init: function(){
-			var lists = $("li","#productList"),
-		    	obj = jQuery.objCookie('cart') || {};
-    		for(var i = 0 ; i < lists.length ; i++){
-    			var opt = $(lists[i]);
-				var id  = opt.attr('data-id');
-    			var num = obj[id];
-    			if(num) opt.find('.productCount').html(num);
-        		this.drawCart(obj,id);
-    		}
+			var obj = $.objCookie('cart') || {},
+				lists = $("li","#productList");
+    		for(var i = 0 ; i < lists.length ; i++)
+				this.drawCart(obj, $(lists[i]).attr('data-id'));
 			this.drawCart(obj);
 		},
 	    setCart:function(id, num){
-			var obj = jQuery.objCookie('cart') || {};
-			if(num == 0){
-				delete obj[id];
-			}else{
-				obj[id] = num;
-			}
-			jQuery.objCookie('cart',obj);
+			var obj = $.objCookie('cart') || {};
+			if(num) obj[id] = num;
+			else delete obj[id];
+			$.objCookie('cart',obj);
 			this.drawCart(obj,id);
 			this.drawCart(obj);
 	    },
@@ -49,8 +45,7 @@ $(document).on("pageinit","#productPage",function(){
 				var totalPrice = 0;
 				for(var i = 0 ; i < lists.length ; i++) {
 					var opt = $(lists[i]);
-					var id  = opt.attr('data-id');
-					var num = obj[id];
+					var num = obj[opt.attr('data-id')];
 					if(num) {
 						var price = opt.attr('data-price');
 						totalPrice += (num*price);
@@ -59,15 +54,15 @@ $(document).on("pageinit","#productPage",function(){
 				}
 				var target = $("#custom-orderBar");
 				if(totalCount) {
-					$("#custom-orderBar-content" , target).html("采购"+totalCount+"种, ¥" + totalPrice + "元");
+					$("#custom-orderBar-content", target).html("采购"+totalCount+"种, ¥" + totalPrice + "元");
 					target.slideDown(function(){
-						$("#custom-orderBar").controlgroup({ excludeInvisible: false });
+						$("#custom-orderBar").controlgroup({excludeInvisible:false});
 					});
 				} else {
 					target.slideUp();
 				}
 			} else {
-				var li  = $("li[data-id='"+id+"']");
+				var li  = $("li[data-id='"+id+"']", "#productList");
 				var min = li.attr('data-min'),
 					max = li.attr('data-max');
     		
@@ -87,59 +82,41 @@ $(document).on("pageinit","#productPage",function(){
 						plus.removeClass('ui-state-disabled');
 					}
     		   }
+			   $('.productCount', li).html(obj[id]||0);
 			}
 	    },
-		isEmptyObj:function(obj){
-			for(var n in obj){
-				return false;
-			}
-			return true; 
-		},
-	    setCount:function(e, opt){
+	    setCount:function(e, value){
 			var li	= $(e.target).parents("li"),
-				box	= li.find('.productCount'),
-				count;
-    		switch(opt){
-    		case '+':
-    		    count = parseInt(box.html())+1;
-    		    break;
-    		case '-':
-    		    count = parseInt(box.html())-1;
-    		    break;
-    		}
-			box.html(count);
+				count = parseInt($('.productCount', li).html()) + value;
 			this.setCart(li.attr('data-id'), count);
 			return false;
-	    },
-	    removeCount:function(e) {
-    		if (confirm("确认要删除？")) {
-    			var li	= $(e.currentTarget).parents("li").remove();
-    			this.setCart(li.attr('data-id'),0);
-				if(this.isEmptyObj(jQuery.objCookie('cart')))
-					window.location.href = "${urlUtil.product}";
-    		}
-		}
-		
+	    }
 	};
 	list.init();
 	
 	$("#productList").on("tap",".productPlus",function(e){
-		return list.setCount(e , '+');
+		return list.setCount(e , 1);
 	});
 
 	$("#productList").on("tap",".productMinus",function(e){
-		return list.setCount(e , '-');
+		return list.setCount(e , -1);
 	});
 	
 	$("#productList").on("tap",".remove_btn",function(e){
-		return list.removeCount(e);
+		if(ft.confirm("取消购买该商品？" , function(){
+			var li	= $(e.currentTarget).parents("li").remove();
+    		list.setCart(li.attr('data-id'),0);
+			if(ft.isEmpty($.objCookie('cart')))
+				window.location.href = window.myURL.product;
+		}));
+		return false;
 	});
 	
 	$("#deliverAddress").on("tap", ".remove-address", function(e) {
 		var li = $(e.currentTarget).parent('li');
 		var addressId = li.attr('data-id');
-		if (confirm("确认要该收货地址？")) {
-			jQuery.ajax({
+		if(ft.confirm("删除该收货地址？", function(){
+			$.ajax({
 				url:"/address/remove",
 				data:{
 					'id':addressId
@@ -148,7 +125,7 @@ $(document).on("pageinit","#productPage",function(){
 					li.remove();
 				}
 			});
-		}
+		}));
 		return false;
 	});
 	
@@ -157,8 +134,8 @@ $(document).on("pageinit","#productPage",function(){
 		var name 	= container.find("input[name=name]").val();
 		var mobile	= container.find("input[name=mobile]").val();
 		var address = container.find("textarea[name=address]").val();
-		if(jQuery.trim(name) != '' && jQuery.trim(mobile) != '' && jQuery.trim(address) != '') {
-			jQuery.ajax({
+		if($.trim(name) != '' && $.trim(mobile) != '' && $.trim(address) != '') {
+			$.ajax({
 				url:"/address/add",
 				data:{
 					'name':name,
@@ -172,11 +149,10 @@ $(document).on("pageinit","#productPage",function(){
 					container.find("input[name=mobile]").val('');
 					container.find("textarea[name=address]").val('');
 					$('#addressDialog').popup('close');
-					$('li:last-child a', container).trigger('tap');
 				}
 			});
 		} else {
-			alert("请完善地址信息");
+			ft.alert("请完善地址信息");
 		}
 	});
 	
@@ -186,11 +162,11 @@ $(document).on("pageinit","#productPage",function(){
 		var addressId = addrli.attr('data-id');
 		var timeId	  = timeli.attr('data-id');
 		if(!addressId) {
-			FT.popup("请选择收货地址");
+			ft.alert("请选择收货地址");
 			return;
 		}
 		if(!timeId) {
-			alert("请选择时间段");
+			ft.alert("请选择送货时间");
 			return;
 		}
 		
@@ -201,7 +177,6 @@ $(document).on("pageinit","#productPage",function(){
 		var day 	= date.getDate();
 		if(day < 10) day = '0' + day;
 		var current = date.getFullYear() + "-" + month + "-" + day;
-		
 		var ndate	= new Date(date.getTime() + 24*3600*1000);
 		var month 	= ndate.getMonth()+1;
 		if(month < 10) month = '0' + month;
@@ -209,7 +184,6 @@ $(document).on("pageinit","#productPage",function(){
 		if(day < 10) day = '0' + day;
 		
 		var next	= ndate.getFullYear()+ "-" + month + "-" + day;
-		
 		var hour  	= date.getHours();
 		var flag	= true;
 		switch(timeId) {
@@ -225,25 +199,26 @@ $(document).on("pageinit","#productPage",function(){
 			break;
 		}
 		if(!flag) {
-			alert('时间段过期，重新选择');
+			ft.alert('该送货时间已过期，重新选择');
 			return;
 		}
 		deliverTime += (" " + timeli.attr('date-suffix'));
 		
-		if(confirm("确定下单？")) {
-			jQuery.ajax({
+		if(ft.confirm("亲，确定下单？" , function(){
+			$.ajax({
 				url:"/order/add",
 				data:{
 					'addressId':addressId,
 					'deliverTime':deliverTime
 				},
 				success:function(json){
-					jQuery.objCookie('cart',null);
-					alert('下单成功');
-					window.location.href = "${urlUtil.order}";
+					$.objCookie('cart',null);
+					ft.alert('下单成功' , function(){
+						window.location.href = window.myURL.order;
+					});
 				}
 			});
-		}
+		}));
 	});
 			
 	$('.radioList').on('tap','.radio', function(e){
