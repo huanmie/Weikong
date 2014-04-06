@@ -15,10 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.feetao.web.service.AddressService;
 import com.feetao.web.service.ArticleService;
+import com.feetao.web.service.ItemService;
 import com.feetao.web.service.OrderService;
 import com.feetao.web.service.ProductService;
 import com.feetao.web.support.RequestContextHolder;
 import com.feetao.web.support.RequestData;
+import com.feetao.web.vo.ItemVO;
 import com.feetao.web.vo.ProductVO;
 
 /**
@@ -28,18 +30,21 @@ import com.feetao.web.vo.ProductVO;
 @Controller
 @RequestMapping("/mini")
 public class WebController {
-
-	@Resource
-	private ProductService productService;
 	
 	@Resource
 	private AddressService addressService;
 	
 	@Resource
+	private ArticleService articleService;
+	
+	@Resource
+	private ItemService itemService;
+	
+	@Resource
 	private OrderService orderService;
 	
 	@Resource
-	private ArticleService articleService;
+	private ProductService productService;
 	
 	@Resource
 	private RequestContextHolder requestContextHolder;
@@ -49,10 +54,12 @@ public class WebController {
 	 * @return
 	 */
 	@RequestMapping("/product")
-	public ModelAndView getProduct() {
+	public ModelAndView getProduct(@RequestParam(value="item",required=false) String item) {
 		RequestData data = requestContextHolder.getRequestData();
 		ModelAndView mv = new ModelAndView("screen/product");
-		mv.addObject("productList", productService.getProductList(data.getUserId()));
+		List<ItemVO> itemList = itemService.getItemList(data.getUserId());
+		mv.addObject("itemList" , itemList);
+		mv.addObject("productList", productService.getProductList(data.getUserId() , item!=null ? item : itemList.get(0).getItem()));
 		return mv;
 	}
 
@@ -68,6 +75,8 @@ public class WebController {
 			@SuppressWarnings("unchecked")
 			Map<Long, Integer> maps = new ObjectMapper().readValue(cart, Map.class);
 			List<ProductVO> products  = productService.getProductList(data.getUserId(), new ArrayList<Long>(maps.keySet()));
+			List<ItemVO> itemList = itemService.getItemList(data.getUserId());
+			mv.addObject("itemList" , itemList);
 			mv.addObject("productList", products);
 		} catch (Exception e) {}
 		mv.addObject("addressList", addressService.getAddressList(data.getUserId(), data.getOpenId()));
@@ -82,6 +91,8 @@ public class WebController {
 	public ModelAndView getOrder() {
 		RequestData data = requestContextHolder.getRequestData();
 		ModelAndView mv = new ModelAndView("screen/order");
+		List<ItemVO> itemList = itemService.getItemList(data.getUserId());
+		mv.addObject("itemList" , itemList);
 		mv.addObject("orderList", orderService.getOrderList(data.getUserId() , data.getOpenId()));
 		return mv;
 	}

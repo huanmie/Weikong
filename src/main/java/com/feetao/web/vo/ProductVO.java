@@ -10,7 +10,12 @@ public class ProductVO {
 	 * 用户ID
 	 */
 	private Long userId;
-
+	
+	/**
+	 * 分类
+	 */
+	private String item;
+	
 	/**
 	 * 标题
 	 */
@@ -31,6 +36,11 @@ public class ProductVO {
 	 */
 	private String picture;
 	
+	/**
+	 * 当前价格
+	 */
+	private Long currPrice;
+
 	/**
 	 * 价格
 	 */
@@ -122,4 +132,23 @@ public class ProductVO {
 		return String.format("%.2f", (double)price/100);
 	}
 
+	public String getDotCurrPrice() {
+		return String.format("%.2f", (double)currPrice/100);
+	}
+	
+	public String getItem() {
+		return item;
+	}
+
+	public void setItem(String item) {
+		this.item = item;
+	}
+
+	public Long getCurrPrice() {
+		return currPrice;
+	}
+
+	public void setCurrPrice(Long currPrice) {
+		this.currPrice = currPrice;
+	}
 }

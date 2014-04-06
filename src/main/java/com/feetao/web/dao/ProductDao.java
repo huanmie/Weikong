@@ -11,9 +11,10 @@ import com.feetao.web.model.ProductDO;
 
 public class ProductDao extends SqlSessionDaoSupport {
 	
-	public List<ProductDO> getProductList(Long userId) {
+	public List<ProductDO> getProductList(Long userId , String item) {
 		Map<String, Object> params = new HashMap<String , Object>();
 		params.put("userId", userId);
+		params.put("item", item);
 		params.put("status", StatusType.ONLINE);
 		return this.getSqlSession().selectList("product.getProductList", params);
 	}

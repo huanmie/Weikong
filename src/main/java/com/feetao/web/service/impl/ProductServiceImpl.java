@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 
 	@Override
-	public List<ProductVO> getProductList(Long userId) {
-		List<ProductDO> list = productDao.getProductList(userId);
+	public List<ProductVO> getProductList(Long userId , String item) {
+		List<ProductDO> list = productDao.getProductList(userId , item);
 		if(list != null && list.size() > 0) {
 			ArrayList<ProductVO> result = new ArrayList<ProductVO>();
 			for(int i = 0 ; i < list.size() ; i++) 

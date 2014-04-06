@@ -4,11 +4,13 @@
 	<resultMap id="baseResult" type="ProductDO">
 		<result property="id" column="id" />
 		<result property="userId" column="user_id" />
+		<result property="item" column="item" />
 		<result property="title" column="title" />
 		<result property="description" column="description" />
 		<result property="thumbnail" column="thumbnail" />
 		<result property="picture" column="picture" />
 		<result property="price" column="price" />
+		<result property="currPrice" column="curr_price" />
 		<result property="unit" column="unit" />
 		<result property="sales" column="sales" />
 		<result property="status" column="status" />
@@ -17,7 +19,7 @@
 	</resultMap>
 	
 	<select id="getProductList" resultMap="baseResult" parameterType="java.util.Map">
-		select * from user_product where user_id=#{userId} and status=#{status}
+		select * from user_product where user_id=#{userId} and status=#{status} and item=#{item} order by factor desc
 	</select>
 	
 	<select id="getProductByIds" resultMap="baseResult" parameterType="java.util.Map">
@@ -25,6 +27,7 @@
 		<foreach collection="ids" index="index" item="item" open="(" separator="," close=")"> 
             #{item} 
         </foreach>
+        order by factor desc
 	</select>
 	
 </mapper>  

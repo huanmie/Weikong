@@ -1,0 +1,19 @@
+<div data-role="popup" id="alert" data-overlay-theme="b" data-theme="a" style="max-width:400px;">
+    <div data-role="header" data-theme="a">
+		<h1></h1>
+    </div>
+    <div role="main" class="ui-content">
+		<p></p>
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">确定</a>
+    </div>
+</div>
+<div data-role="popup" id="confirm" data-overlay-theme="b" data-theme="a" data-dismissible="false" style="max-width:400px;">
+    <div data-role="header" data-theme="a">
+		<h1></h1>
+    </div>
+    <div role="main" class="ui-content">
+		<p></p>
+        <a href="#" class="OK ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">确定</a>
+        <a href="#" class="Cancel ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back" data-transition="flow">取消</a>
+    </div>
+</div>

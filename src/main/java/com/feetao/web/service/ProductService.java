@@ -10,7 +10,7 @@ public interface ProductService {
 	 * 获取用户产品
 	 * @return
 	 */
-	public List<ProductVO> getProductList(Long userId);
+	public List<ProductVO> getProductList(Long userId , String item);
 	
 	/**
 	 * 获取用户产品

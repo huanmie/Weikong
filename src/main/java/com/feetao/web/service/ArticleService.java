@@ -13,15 +13,6 @@ public interface ArticleService {
 	 */
 	public List<ArticleVO> getNewsList(Long userId , String item);
 	
-//	/**
-//	 * 获取用户文章列表
-//	 * @param cursor
-//	 * @param direction
-//	 * @param size
-//	 * @return
-//	 */
-//	public List<ArticleVO> getNewsList(Long userId , String item , Long cursor, Byte direction , Integer size);
-//	
 	/**
 	 * 获取某文章
 	 * @param id

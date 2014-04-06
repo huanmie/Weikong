@@ -1,32 +1,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<meta name="author" content="">
-		<link rel="shortcut icon" href="${urlUtil.assets}/asset/image/favicon.png">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 		<title>芝麻开门微超市</title>
-		<!-- Le styles -->
-		<link href="${urlUtil.assets}/asset/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${urlUtil.assets}/asset/css/custom.css" rel="stylesheet">
-		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
-		<script src="http://code.jquery.com/jquery.min.js"></script>
-		<script>
-			document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-				//WeixinJSBridge.call('hideToolbar');
-			});
-		</script>
-	</head>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<link rel="stylesheet" href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="${urlUtil.assets}/asset/css/custom.css" />
+		<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script src="${urlUtil.assets}/asset/js/jquery-cookie.js"></script>
+    </head>
 	<body>
-    	<!-- screen -->
     	$screen_content
-		<!-- js-->
-		<script src="${urlUtil.assets}/asset/js/bootstrap.min.js"></script>
+		<script>
+			window.myURL={}
+			myURL.product	= '${urlUtil.product}';
+			myURL.cart		= '${urlUtil.cart}';	
+			myURL.order		= '${urlUtil.order}';
+		</script>
+		<script src="${urlUtil.assets}/asset/js/ss.js"></script>
 	</body>
 </html>
