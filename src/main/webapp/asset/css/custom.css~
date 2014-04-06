@@ -23,6 +23,3 @@
 .custom-popup {
 	max-width: 400px;
 }
-.custom-popup-holder{
-	display:none;
-}

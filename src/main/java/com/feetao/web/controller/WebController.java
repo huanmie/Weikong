@@ -50,6 +50,15 @@ public class WebController {
 	private RequestContextHolder requestContextHolder;
 
 	/**
+	 * 首页
+	 * @return
+	 */
+	@RequestMapping("/index")
+	public ModelAndView getIndex() {
+		return new ModelAndView("screen/index");
+	}
+	
+	/**
 	 * 商品
 	 * @return
 	 */

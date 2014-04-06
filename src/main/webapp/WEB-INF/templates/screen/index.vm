@@ -1,0 +1,10 @@
+#set($layout = "/layout/page.vm")
+<!-- 商品容器start -->
+<div id="product" data-role="page" data-theme="a">
+</div>
+<!-- 购物车容器start -->
+<div id="cart" data-role="page" data-theme="a">
+</div>
+<!-- 订单start -->
+<div id="order" data-role="page" data-theme="a" data-cache="false">
+</div>

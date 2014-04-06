@@ -2,26 +2,19 @@
 <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme="b" >
 	#if($page=="product" || $page=="cart")
     <div id="custom-orderBar" data-role="controlgroup" data-type="horizontal" data-theme="a" class="custom-center">
-		<a id="custom-orderBar-content" href="javascript:;" class="ui-btn ui-btn-inline">loading</a>
+		<a id="custom-orderBar-content" href="#" class="ui-btn ui-btn-inline">loading</a>
 		#if($page=="product")
-			<a href="${urlUtil.cart}" rel="external" class="ui-btn ui-btn-inline">去结算</a>
+			<a href="#cart" class="ui-btn ui-btn-inline">去结算</a>
 		#else
-			<a id="custom-orderBar-create" href="javascript:;" class="ui-btn ui-btn-inline">立即下单</a>
+			<a id="custom-orderBar-create" href="#" class="ui-btn ui-btn-inline">立即下单</a>
 		#end
     </div>
 	#end
-    <div data-role="navbar" data-grid="b" >
+    <div data-role="navbar" data-grid="b">
 	    <ul>
-			<li><a href="#popupMenu" data-rel="popup"><div style="margin-bottom:4px"><i class="fa fa-list-ul fa-lg"></i></div> 逛街</a></li>
-			<li><a href="${urlUtil.cart}${urlUtil.anchor}" rel="external" class="#if($page=="cart") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-shopping-cart fa-lg"></div></i> 购物筐</a></li>
-			<li><a href="${urlUtil.order}${urlUtil.anchor}" rel="external" class="#if($page=="order") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-gavel fa-lg"></div></i> 订单</a></li>
+			<li><a href="#product" class="#if($page=="product") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-list-ul fa-lg"></i></div> 逛街</a></li>
+			<li><a href="#cart" class="#if($page=="cart") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-shopping-cart fa-lg"></div></i> 购物筐</a></li>
+			<li><a href="#order" class="#if($page=="order") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-gavel fa-lg"></div></i> 订单</a></li>
 	    </ul>
     </div>
-	<div data-role="popup" id="popupMenu" data-theme="b">
-		<ul data-role="listview" data-inset="true" style="min-width:50px;">
-			#foreach($item in $itemList)
-            <li><a href="${urlUtil.product}?item=${item.item}${urlUtil.anchor}" rel="external">$item.itemName</a></li>
-			#end
-		</ul>
-	</div>
 </div>

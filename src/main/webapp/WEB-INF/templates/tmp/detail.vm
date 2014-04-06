@@ -1,3 +1,0 @@
-<div class="edge-space">
-#parse("control/view.vm")
-</div>

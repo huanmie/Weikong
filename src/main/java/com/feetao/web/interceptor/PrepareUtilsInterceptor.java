@@ -50,10 +50,11 @@ public class PrepareUtilsInterceptor implements HandlerInterceptor {
 		System.out.println("data:" + data);
 		//TODO 需要一个错误跳转地址
 		if(data == null) return false;
-		
 		requestContextHolder.set(data);
-		if(iscoming) 
+		if(iscoming) {
 			memberService.enterMember(data.getOpenId(), data.getUserId());
+			response.sendRedirect(urlContainer.get("index"));
+		}
 		return true;
 	}
 
