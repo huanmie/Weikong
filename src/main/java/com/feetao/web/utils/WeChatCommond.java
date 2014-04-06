@@ -54,7 +54,7 @@ public class WeChatCommond {
 //    			"}]}";
     	String currentMenu = "{\"button\":[" +
     			"{\"type\":\"click\",\"name\":\"进入超市\",\"key\":\"商城\"}," +
-    			"{\"type\":\"click\",\"name\":\"投票\",\"key\":\"投票\"}" +
+    			"{\"type\":\"click\",\"name\":\"宿舍投票\",\"key\":\"投票\"}" +
     			"]}";
     	createMenu(currentMenu);
     }

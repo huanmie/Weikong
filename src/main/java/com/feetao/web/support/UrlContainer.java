@@ -38,12 +38,13 @@ public class UrlContainer {
 			String pubId	= values[2];
 			String sign		= values[3];
 			String tsign	= Signer.getSign(userId + openId + pubId + Constants.COOKIEFIXSALT);
-			if(!tsign.equals(sign)) return null;
-			RequestData data = new RequestData();
-			data.setUserId(userId);
-			data.setOpenId(openId);
-			data.setPubId(pubId);
-			return data;
+			if(tsign.equals(sign)){
+				RequestData data = new RequestData();
+				data.setUserId(userId);
+				data.setOpenId(openId);
+				data.setPubId(pubId);
+				return data;
+			}
 		}catch(Exception e) {
 		}
 		return null;

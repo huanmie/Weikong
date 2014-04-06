@@ -24,7 +24,7 @@
 		    	<entry key="order" value="http://m.feetao.com/mini/order" />				<!-- 订单 -->
 		    	<entry key="cart" value="http://m.feetao.com/mini/cart" />					<!-- 购物车 -->
 		    	<entry key="news_banner" value="http://m.feetao.com/mini/news_banner" /> 	<!-- 新闻 -->
-		    	<entry key="rotate" value="http://m.feetao.com/mini/rotate" />
+		    	<entry key="rotate" value="http://m.feetao.com/mini/rotate" />				<!-- 转盘 -->
 		   	</map>
 	  	</property>
 	</bean>

@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.feetao.web</groupId>
-	<artifactId>Weikong</artifactId>
+	<artifactId>weikong</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>Weikong Maven Webapp</name>
+	<name>weikong</name>
 	<url>http://maven.apache.org</url>
 	
 	<properties>
@@ -163,9 +163,36 @@
 		<finalName>weikong</finalName>
 		<plugins>
 			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+		        </configuration>
+		    </plugin>
+			<plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-war-plugin</artifactId>  
+			    <configuration>  
+			        <webResources>  
+			            <resource>  
+			                <!-- 相对于pom.xml配置的文件夹，相当于pom.xml与deploy是同样的文件夹-->  
+			                <directory>deploy</directory>  
+			                <!-- 覆盖的位置 -->  
+			                <targetPath>WEB-INF/classes</targetPath>  
+			                <!-- enable filtering -->  
+			                <filtering>true</filtering>  
+			                <includes>  
+			                    <include>attr.properties</include>  
+			                </includes>  
+			            </resource>  
+			        </webResources>  
+			    </configuration>  
+			</plugin>
+			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
-				<configuration>  
+				<configuration>
 					<contextPath>/</contextPath>  
                     <connectors>  
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">  
@@ -175,14 +202,6 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>  
 				</configuration>  
 			</plugin>
-			<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-compiler-plugin</artifactId>
-		        <configuration>
-		          <source>1.5</source>
-		          <target>1.5</target>
-		        </configuration>
-		    </plugin>
 		</plugins>
 	</build>
 </project>
