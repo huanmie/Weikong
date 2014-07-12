@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title>芝麻开门微超市</title>
+		<link rel="stylesheet" href="http://cdn.app-framework-software.intel.com/2.1/af.ui.base.css" />
+		<link rel="stylesheet" href="http://cdn.app-framework-software.intel.com/2.1/icons.css" />
+		<link rel="stylesheet" href="${urlUtil.assets}/asset/css/new-custom.css"></script>
+		<script src="http://cdn.app-framework-software.intel.com/2.1/appframework.ui.min.js"></script>    
+		<script src="${urlUtil.assets}/asset/js/cookie.js"></script>
+		<script src="${urlUtil.assets}/asset/js/unslider.min.js"></script>
+		<script src="${urlUtil.assets}/asset/js/new-custom.js"></script>
+    </head>
+	<body>
+		<div id="afui">
+			<div id="content">
+				$screen_content
+			</div>
+		</div>
+	</body>
+</html>

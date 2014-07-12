@@ -30,7 +30,7 @@
 			<mvc:mapping path="/**"/> 
 			<mvc:exclude-mapping path="/api/**"/> 
 			<bean class="com.feetao.web.interceptor.PrepareUtilsInterceptor" /> 
-		</mvc:interceptor> 
+		</mvc:interceptor>
     </mvc:interceptors>
 	
 	<bean id="velocityConfigurer"

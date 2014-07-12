@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 import com.feetao.web.constants.Constants;
-import com.feetao.web.utils.Signer;
+import com.feetao.web.utils.SignerHelper;
 
 public class UrlContainer {
 
@@ -37,7 +37,7 @@ public class UrlContainer {
 			String openId	= values[1];
 			String pubId	= values[2];
 			String sign		= values[3];
-			String tsign	= Signer.getSign(userId + openId + pubId + Constants.COOKIEFIXSALT);
+			String tsign	= SignerHelper.MD5(userId + openId + pubId + Constants.COOKIEFIXSALT);
 			if(tsign.equals(sign)){
 				RequestData data = new RequestData();
 				data.setUserId(userId);
@@ -51,7 +51,7 @@ public class UrlContainer {
 	}
 
 	public String createComingLink(String key , Long userId,  String openId , String pubId) {
-		String tsign	= Signer.getSign(userId + openId + pubId + Constants.COOKIEFIXSALT);
+		String tsign	= SignerHelper.MD5(userId + openId + pubId + Constants.COOKIEFIXSALT);
 		StringBuilder sb = new StringBuilder(get(key));
 		sb.append("?").append(Constants.COOKIEKEY).append("=").append(userId).append(Constants.COOKIESPLIT).append(openId).append(Constants.COOKIESPLIT).append(pubId)
 		.append(Constants.COOKIESPLIT).append(tsign).append(urls.get("anchor"));

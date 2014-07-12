@@ -7,12 +7,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<bean id="addressDao" class="com.feetao.web.dao.AddressDao" parent="sqlDaoBaseSupport"/>
-	<bean id="articleDao" class="com.feetao.web.dao.ArticleDao" parent="sqlDaoBaseSupport"/>
+	<bean id="bannerDao" class="com.feetao.web.dao.BannerDao" parent="sqlDaoBaseSupport"/>	
+	<bean id="boardDao" class="com.feetao.web.dao.BoardDao" parent="sqlDaoBaseSupport"/>
 	<bean id="itemDao" class="com.feetao.web.dao.ItemDao" parent="sqlDaoBaseSupport"/>
 	<bean id="memberDao" class="com.feetao.web.dao.MemberDao" parent="sqlDaoBaseSupport"/>
 	<bean id="messageDao" class="com.feetao.web.dao.MessageDao" parent="sqlDaoBaseSupport"/>
 	<bean id="orderDao" class="com.feetao.web.dao.OrderDao" parent="sqlDaoBaseSupport"/>
-	<bean id="productDao" class="com.feetao.web.dao.ProductDao" parent="sqlDaoBaseSupport"/>	
+	<bean id="productDao" class="com.feetao.web.dao.ProductDao" parent="sqlDaoBaseSupport"/>
+	<bean id="shopDao" class="com.feetao.web.dao.ShopDao" parent="sqlDaoBaseSupport"/>		
 	<bean id="wechatDao" class="com.feetao.web.dao.WechatDao" parent="sqlDaoBaseSupport"/>
 	
 </beans>

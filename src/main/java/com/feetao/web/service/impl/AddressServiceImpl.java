@@ -29,20 +29,18 @@ public class AddressServiceImpl implements AddressService {
 		return null;
 	}
 
-
 	@Override
 	public AddressVO getAddressById(Long userId, String openId, Long addressId) {
 		AddressDO ado = addressDao.getAddressById(userId,openId,addressId);
 		return Convert.convert(AddressVO.class, ado);
 	}
-//
-//	@Override
-//	public void updateAddress(AddressVO vo) {
-//		AddressDO ado = Convert.convert(AddressDO.class, vo);
-//		addressDao.updateAddress(ado);
-//	}
 
-
+	@Override
+	public AddressVO getDefaultAddress(Long userId, String openId) {
+		AddressDO ado = addressDao.getDefaultAddress(userId, openId);
+		return Convert.convert(AddressVO.class, ado);
+	}
+	
 	@Override
 	public AddressVO addAddress(Long userId, String openId, String name, String mobile, String address) {
 		AddressDO ado = new AddressDO();
@@ -68,6 +66,10 @@ public class AddressServiceImpl implements AddressService {
 		addressDao.updateAddress(ado);
 	}
 
+	@Override
+	public void setAddress(Long userId , String openId , Long id) {
+		addressDao.setAddress(userId, openId, id);
+	}
 
 	@Override
 	public void removeAddress(Long userId, String openId, Long id) {

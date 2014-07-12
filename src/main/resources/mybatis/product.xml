@@ -10,7 +10,8 @@
 		<result property="thumbnail" column="thumbnail" />
 		<result property="picture" column="picture" />
 		<result property="price" column="price" />
-		<result property="currPrice" column="curr_price" />
+		<result property="oriPrice" column="ori_price" />
+		<result property="attrPictures" column="attr_pictures" />		
 		<result property="unit" column="unit" />
 		<result property="sales" column="sales" />
 		<result property="status" column="status" />

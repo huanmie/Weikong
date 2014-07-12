@@ -1,0 +1,37 @@
+<script>
+function item_init(){
+	var slidey = $('.banner').unslider({
+		fluid:true,
+		dots:true,
+		speed:500,
+		delay: 3000
+	});
+}
+</script>
+
+#set($pageTitle="选择喜欢的分类")
+#set($page="item")
+<!-- 类别容器start -->
+<div id="item" data-role="page" data-theme="b">
+    <!-- 页眉部分start -->
+    #parse("control/header.vm")
+    <!-- content部分start -->
+	<div class="ui-content custom-banner" style="padding:0px">
+    	<ul>
+			#foreach($banner in $bannerList)
+    		<li>
+    			<a href="$banner.url"><img src="$banner.picture"><p><span>$banner.name</span></p></a>
+    		</li>
+			#end
+    	</ul>
+	</div>
+    <div class="ui-content custom-grid">
+		<ul>
+			#foreach($item in $itemList)
+    		<li>
+    			<a href="$item.url"><img src="$item.picture"><p><span>$item.itemName</span></p></a>
+    		</li>
+			#end
+    	</ul>
+    </div>
+</div>

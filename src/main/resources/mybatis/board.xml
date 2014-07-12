@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<resultMap id="baseResult" type="BoardMsgDO">
+		<result property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="openId" column="openId" />
+		<result property="content" column="content" />
+		<result property="status" column="status" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModified" column="gmt_modified" />
+	</resultMap>
+	
+	<select id="getMessageList" resultMap="baseResult" parameterType="java.util.Map">
+		<![CDATA[
+		select * from user_board where user_id=#{userId} and status=#{status} and gmt_create < #{cursor} limit #{size};
+		]]>
+	</select>
+	
+	<insert id="addMessage" parameterType="BoardMsgDO">
+		insert into user_message(user_id,open_id,content,status,gmt_create,gmt_modified) values(#{userId},#{openId},#{content},#{status},now(),now());
+	</insert>
+	
+</mapper>  

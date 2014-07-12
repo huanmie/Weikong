@@ -1,0 +1,20 @@
+#set($pageTitle="选择店铺")
+<!-- 店铺容器start -->
+<div id="shop" data-role="page" data-theme="b">
+    <!-- 页眉部分start -->
+    #parse("control/header.vm")
+    <!-- content部分start -->
+    <div id="shopList" class="ui-content">
+    	<ul data-role="listview" data-inset="true">
+    		#foreach($shop in $shopList)
+    		<li>
+    			<a href="$shop.url">
+    				<img src="$shop.picture">
+    		    	<h2>${shop.name}（营业时间:$shop.businessTime）</h2>
+    		    	<p>$shop.address</p>
+    			</a>
+    	    </li>
+    		#end
+    	</ul>
+    </div>
+</div>

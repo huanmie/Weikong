@@ -1,0 +1,78 @@
+<script>
+function market_init(div){
+	var obj 	= af.objCookie('cart') || {},
+		list 	= $("li" , div);
+	af.each(list , function(index,li){
+		var id = $(li).attr("data-id");
+		if(obj[id])
+			$(".num", li).html(obj[id]);
+		else
+			$(".productMinus", li).addClass("disable");
+	});
+	$(div).on("tap",".productPlus",function(e){
+		var numTar = $(e.currentTarget).siblings(".num")
+		var count = parseInt(numTar.html()) + 1;
+		numTar.html(count);
+		cart.setCount(numTar.parents("li").attr("data-id"),count);
+		calculate();
+		$(e.currentTarget).siblings(".productMinus").removeClass("disable");
+		return false;
+	});
+	$(div).on("tap",".productMinus",function(e){
+		var numTar = $(e.currentTarget).siblings(".num");
+		var count = parseInt(numTar.html()) - 1;
+		if(count <= 0)
+			$(e.currentTarget).addClass("disable");
+		if(count < 0) return false;
+		numTar.html(count);
+		cart.setCount(numTar.parents("li").attr("data-id"),count);
+		calculate();
+		return false;
+	});
+	
+	function calculate() {
+		var obj 	= af.objCookie('cart') || {};
+		var totalCount = 0;
+		var totalPrice = 0;
+		for(var i = 0 ; i < list.length; i++) {
+			var opt = $(list[i]);
+			var num = obj[opt.attr('data-id')];
+			if(!num) continue;
+			totalPrice += (num*opt.attr('data-price'));
+			totalCount+=num;
+		}
+		if(!totalCount) {
+			$("#navbar").hide();
+		} else {
+			$("footer h4").html("共" + totalCount + "件,<span style=\"color:red\"> ￥"+totalPrice + "</span>");
+			$("#navbar").show();
+		}
+	};
+	calculate();
+}
+</script>
+<div>
+	<ul class="listview">
+		#foreach($product in $productList)
+		<li data-id="$product.id" data-price="$product.dotPrice">
+			<a href="#">
+    			<img src="$product.thumbnail">
+    	    	<h3>$product.title
+    				<small>
+    					¥$product.dotPrice/$product.unit
+    					#if($product.oriPrice)
+    						<span class="custom-decoration">原价¥$product.dotOriPrice</span>
+    					#end
+    				</small>
+    			</h3>
+				<p>销量:$product.sales</p>
+			</a>
+			<div class="button-group">
+				<a class="productMinus">-</a>
+				<a class="num">0</a>
+				<a class="productPlus">+</a>
+			</div>
+	    </li>
+		#end
+	</ul>
+</div>

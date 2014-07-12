@@ -1,0 +1,51 @@
+<script>
+function address_init(div){
+	$(div).on("tap", ".button", function(e){
+		af.ajax({
+			url:"/address/add",
+			dataType:"json",
+			data:$("#addressGroup").serialize(),
+			success:function(json) {
+				if(json.success){
+					var li = '<li data-id="' + json.result.id + '"><a href="#"><h3>收货人：'+json.result.name+'<span>'+json.result.mobile+'</span></h3><div>'+json.result.address+'</div></a></li>';
+					$("ul").append(li);
+				}
+			}
+		});
+	});
+	$(div).on("tap", "li" , function(e){
+		af.ajax({
+			url:"/address/set",
+			dataType:"json",
+			data:{
+				id:$(e.currentTarget).attr("data-id")
+			},
+			success:function(json){
+				if(json.success){
+				}
+			}
+		})
+	})
+}
+</script>
+<div id="address" class="panel" data-footer="none" data-title="收获地址管理" data-load="address_init">
+	<ul class="list">
+		#foreach($address in $addressList)
+		<li data-id="$address.id">
+			<a href="#" class="delivery #if($address.addrStatus=="1")delivery-active #end">
+        		<h3>收货人：$address.name<span>$address.mobile</span></h3>
+        		<div>$address.address</div>
+        	</a>
+	    </li>
+		#end
+	</ul>
+	<div>
+    	<div class="formGroupHead">输入地址信息</div>
+    	<form id="addressGroup">
+    		<input type="text" name="name" placeholder="姓名">
+    		<input type="text" name="mobile" placeholder="电话">
+    		<textarea rows="3" name="address" placeholder="详细地址"></textarea>
+    	</form>
+		<a class="button">提交</a>
+	<div>	
+</div>

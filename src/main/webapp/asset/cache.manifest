@@ -1,0 +1,10 @@
+CACHE MANIFEST
+##VERSION: Tue Apr 08 13:23:30 CST 20141396934589003
+CACHE:
+http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.css
+http://libs.baidu.com/jquery/1.9.1/jquery.min.js
+http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.2/jquery.mobile.min.js
+
+NETWORK:
+*
+FALLBACK:

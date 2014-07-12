@@ -5,7 +5,9 @@
 		<result property="id" column="id" />
 		<result property="userId" column="user_id" />
 		<result property="itemName" column="itemName" />
-		<result property="item" column="item" />
+		<result property="url" column="url" />
+		<result property="picture" column="picture" />
+		<result property="description" column="description" />	
 		<result property="status" column="status" />
 		<result property="gmtCreate" column="gmt_create" />
 		<result property="gmtModified" column="gmt_modified" />

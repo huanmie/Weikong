@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +18,8 @@ import com.feetao.web.support.RequestData;
 import com.feetao.web.support.UrlContainer;
 
 public class PrepareUtilsInterceptor implements HandlerInterceptor {
+
+	private static Logger logger = LoggerFactory.getLogger(PrepareUtilsInterceptor.class);
 
 	@Resource
 	private MemberService memberService;
@@ -47,14 +51,15 @@ public class PrepareUtilsInterceptor implements HandlerInterceptor {
 			response.addCookie(cookie);
 		}
 		RequestData data = urlContainer.parserCookie(cookieValue);
-		System.out.println("data:" + data);
+		logger.info("url:" + request.getRequestURI() + " ; data:" + data);
 		//TODO 需要一个错误跳转地址
 		if(data == null) return false;
-		requestContextHolder.set(data);
 		if(iscoming) {
 			memberService.enterMember(data.getOpenId(), data.getUserId());
 			response.sendRedirect(urlContainer.get("index"));
+			return false;
 		}
+		requestContextHolder.set(data);
 		return true;
 	}
 

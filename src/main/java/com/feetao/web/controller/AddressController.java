@@ -11,15 +11,20 @@ import com.feetao.web.constants.Result;
 import com.feetao.web.service.AddressService;
 import com.feetao.web.support.RequestContextHolder;
 import com.feetao.web.support.RequestData;
+import com.feetao.web.vo.AddressVO;
 
 /**
  * 收货地址
- * @author feetao
+ * <p>Title: AddressController.java</p>
+ * <p>Description: </p>
+ * @author yida.zyd
+ * @date 2014-4-8
+ * @version 1.0
  */
 @Controller
 @RequestMapping("/address")
 public class AddressController {
-
+	
 	@Resource
 	private AddressService addressService;
 	
@@ -29,25 +34,38 @@ public class AddressController {
 	@ResponseBody
 	@RequestMapping("/add")
 	public Object addAddress(@RequestParam("name") String name , @RequestParam("mobile") String mobile , @RequestParam("address") String address) {
+		Result<AddressVO> result = new Result<AddressVO>();
 		RequestData data = requestContextHolder.getRequestData();
-		return addressService.addAddress(data.getUserId() , data.getOpenId() , name , mobile , address);
+		AddressVO avo = addressService.addAddress(data.getUserId() , data.getOpenId() , name , mobile , address);
+		result.setResult(avo);
+		return result;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/update")
 	public Object updateAddress(@RequestParam("id") Long id , @RequestParam("name") String name , @RequestParam("mobile") String mobile , @RequestParam("address") String address) {
+		Result<Object> result = new Result<Object>();
 		RequestData data = requestContextHolder.getRequestData();
 		addressService.updateAddress(data.getUserId() , data.getOpenId() , id,  name , mobile , address);
-		return new Result();
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/set")
+	public Object setAddress(@RequestParam("id") Long id) {
+		Result<Object> result = new Result<Object>();
+		RequestData data = requestContextHolder.getRequestData();
+		addressService.setAddress(data.getUserId() , data.getOpenId() , id);
+		return result;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/remove")
 	public Object removeAddress(@RequestParam("id") Long id) {
+		Result<Object> result = new Result<Object>(); 
 		RequestData data = requestContextHolder.getRequestData();
 		addressService.removeAddress(data.getUserId() , data.getOpenId() , id);
-		return new Result();
+		return result;
 	}
-	
 
 }

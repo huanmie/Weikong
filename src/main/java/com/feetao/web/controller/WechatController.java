@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,8 @@ import com.feetao.web.wx.vo.MessageSendVO;
 @RequestMapping("/api")
 public class WechatController {
 
+	private static Logger logger = LoggerFactory.getLogger(WechatController.class);
+	
 	@Resource
 	private WechatService wechatService;
 
@@ -44,15 +48,14 @@ public class WechatController {
         		messageService.addMessage(userId, receiver.getFromUserName(), receiver.toString());
         		//处理用户请求
         		MessageSendVO sender		= wechatService.hander(userId , receiver);
-        		if(sender != null) {
-        			PrintWriter out				= response.getWriter();
-        			System.out.println(sender.toXML());
-        			out.print(sender.toXML());
-        			out.close();
-        		}
+        		if(sender == null) return;
+    			PrintWriter out				= response.getWriter();
+    			out.print(sender.toXML());
+    			out.close();
+    			logger.info("message userId[{}] and content[{}]" , new Object[]{userId, sender.toXML()});
         	}
 		}catch(Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
 		}
 	}
 }

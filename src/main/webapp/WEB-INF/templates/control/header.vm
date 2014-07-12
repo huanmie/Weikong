@@ -1,5 +1,8 @@
-<!-- 页眉部分start -->
 <div data-role="header">
-	<!-- <h1>请选择你喜欢吃的水果</h1> -->
+	#if($page != "item")
+	<h1>${pageTitle}</h1>
+	<a href="item" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-home">首页</a>
+	<a href="order" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars">订单</a>	
+	#end
 </div>
 	

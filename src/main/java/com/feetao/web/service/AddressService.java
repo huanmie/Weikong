@@ -24,6 +24,14 @@ public interface AddressService {
 	public AddressVO getAddressById(Long userId , String openId , Long addressId);
 	
 	/**
+	 * 获取默认地址
+	 * @param userId
+	 * @param openId
+	 * @return
+	 */
+	public AddressVO getDefaultAddress(Long userId , String openId);
+	
+	/**
 	 * 添加收货地址
 	 * @param userId
 	 * @param openId
@@ -38,6 +46,12 @@ public interface AddressService {
 	 */
 	public void updateAddress(Long userId , String openId , Long id , String name , String mobile , String address);
 
+	/**
+	 * 设置默认地址
+	 * @param userId
+	 */
+	public void setAddress(Long userId , String openId , Long id);
+	
 	/**
 	 * 删除收货地址
 	 * @param userId

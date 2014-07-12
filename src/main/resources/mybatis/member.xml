@@ -25,13 +25,13 @@
 	
 	<update id="updateMember" parameterType="MemberDO">
 		update user_member set gmt_modified = #{gmtModified}
-		<if test="name!=null">
+		<if test="name">
 			,name = #{name}
 		</if>
-		<if test="score!=null">
+		<if test="score">
 			,score = #{score}
 		</if>
-		<if test="source!=null">
+		<if test="source">
 			,source = #{source}
 		</if>
 		<if test="lastEnter">

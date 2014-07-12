@@ -28,6 +28,11 @@ public class StatusType {
 	public static byte ORDER_SEND	= 8;
 	
 	/**
+	 * 不满退货
+	 */
+	public static byte ORDER_FAILED = 9;
+	
+	/**
 	 * 交易成功
 	 */
 	public static byte ORDER_SUCCESS = 10;

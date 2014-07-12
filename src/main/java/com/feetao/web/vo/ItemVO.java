@@ -18,9 +18,19 @@ public class ItemVO {
 	private String itemName;
 	
 	/**
-	 * 类别key
+	 * 跳转链接
 	 */
-	private String item;
+	private String url;
+	
+	/**
+	 * 类别图片
+	 */
+	private String picture;
+	
+	/**
+	 * 类别描述
+	 */
+	private String description;
 
 	public Long getId() {
 		return id;
@@ -46,12 +56,28 @@ public class ItemVO {
 		this.itemName = itemName;
 	}
 
-	public String getItem() {
-		return item;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setItem(String item) {
-		this.item = item;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

@@ -1,0 +1,14 @@
+<div>
+	<ul class="banner">
+		#foreach($banner in $bannerList)
+		<li><a href="$banner.url"><img src="$banner.picture"><!--<span>$banner.name</span> --></a></li>
+		#end
+	</ul>
+	<ul class="matrix">
+		#foreach($item in $itemList)
+		<li>
+			<a href="$item.url"><img src="$item.picture"><span>$item.itemName</span></a>
+		</li>
+		#end
+	</ul>
+</div>

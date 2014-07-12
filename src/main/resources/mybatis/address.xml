@@ -8,6 +8,7 @@
 		<result property="name" column="name" />
 		<result property="mobile" column="mobile" />
 		<result property="address" column="address" />
+		<result property="addrStatus" column="addr_status" />		
 		<result property="status" column="status" />
 		<result property="gmtCreate" column="gmt_create" />
 		<result property="gmtModified" column="gmt_modified" />
@@ -25,6 +26,18 @@
 	<select id="getAddressById" resultMap="baseResult" parameterType="java.util.Map">
 		select * from user_address where open_id=#{openId} and user_id=#{userId} and id=#{id}
 	</select>	
+
+	<select id="getDefaultAddress" resultMap="baseResult" parameterType="java.util.Map">
+		select * from user_address where open_id=#{openId} and user_id=#{userId} and addr_status=1 and status=#{status}
+	</select>	
+	
+	<update id="updateUndefault" parameterType="AddressDO">
+		update user_address set addr_status=0 where open_id=#{openId} and user_id=#{userId}
+	</update>
+	
+	<update id="updateDefault" parameterType="AddressDO">
+		update user_address set addr_status=1 where open_id=#{openId} and user_id=#{userId} and id=#{id}
+	</update>
 	
 	<update id="updateAddress" parameterType="AddressDO">
 		update user_address set gmt_modified=now()

@@ -13,6 +13,7 @@
 		   		<entry key="assets" value="${feetao.assets.url}" />
 		   		<entry key="anchor" value="${feetao.anchor.url}" />
 				<entry key="index" value="${feetao.index.url}" />
+				<entry key="mini" value="${feetao.mini.url}" />				
 		   		<!-- plugin -->
 		   		<entry key="product" value="${feetao.product.url}" /> 			<!-- 商品 -->
 		    	<entry key="order" value="${feetao.order.url}" />				<!-- 订单 -->

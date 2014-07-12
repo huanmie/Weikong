@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.feetao.web.constants.ConstantsError;
 import com.feetao.web.constants.StatusType;
 import com.feetao.web.dao.OrderDao;
+import com.feetao.web.exception.ServiceException;
 import com.feetao.web.model.OrderDO;
 import com.feetao.web.service.AddressService;
 import com.feetao.web.service.OrderService;
@@ -37,7 +39,8 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void addOrder(Long userId, String openId, Long addressId, String content, String deliverTime , Long price) {
 		AddressVO vo = addressService.getAddressById(userId, openId, addressId);
-		if(vo == null) throw new IllegalArgumentException("addressId:" + addressId);
+		if(vo == null) 
+			throw new ServiceException(ConstantsError.InvalidArguemnt);
 		OrderDO odo = new OrderDO();
 		odo.setUserId(userId);
 		odo.setOpenId(openId);

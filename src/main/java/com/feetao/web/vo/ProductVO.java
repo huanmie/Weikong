@@ -1,5 +1,7 @@
 package com.feetao.web.vo;
 
+import org.apache.commons.lang.StringUtils;
+
 public class ProductVO {
 	/**
 	 * 主键ID
@@ -35,17 +37,22 @@ public class ProductVO {
 	 * 原图
 	 */
 	private String picture;
-	
-	/**
-	 * 当前价格
-	 */
-	private Long currPrice;
 
 	/**
 	 * 价格
 	 */
 	private Long price;
+	
+	/**
+	 * 原价
+	 */
+	private Long oriPrice;
 
+	/**
+	 * 属性图
+	 */
+	private String attrPictures;
+	
 	/**
 	 * 单位
 	 */
@@ -128,14 +135,6 @@ public class ProductVO {
 		this.sales = sales;
 	}
 	
-	public String getDotPrice() {
-		return String.format("%.2f", (double)price/100);
-	}
-
-	public String getDotCurrPrice() {
-		return String.format("%.2f", (double)currPrice/100);
-	}
-	
 	public String getItem() {
 		return item;
 	}
@@ -144,11 +143,33 @@ public class ProductVO {
 		this.item = item;
 	}
 
-	public Long getCurrPrice() {
-		return currPrice;
+	public Long getOriPrice() {
+		return oriPrice;
 	}
 
-	public void setCurrPrice(Long currPrice) {
-		this.currPrice = currPrice;
+	public void setOriPrice(Long oriPrice) {
+		this.oriPrice = oriPrice;
 	}
+
+	public String getAttrPictures() {
+		return attrPictures;
+	}
+
+	public void setAttrPictures(String attrPictures) {
+		this.attrPictures = attrPictures;
+	}
+	
+	public String getDotPrice() {
+		return String.format("%.2f", (double)price/100);
+	}
+	
+	public String getDotOriPrice() {
+		return String.format("%.2f", (double)oriPrice/100);
+	}
+	
+	public String[] getAttrPictureList(){
+		if(StringUtils.isBlank(attrPictures)) return null;
+		return attrPictures.split(",");
+	}
+	
 }

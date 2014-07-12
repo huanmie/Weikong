@@ -1,0 +1,68 @@
+/*comon*/
+*{
+padding:0px;
+margin:0px;
+}
+ul{
+list-style:none;
+}
+a{
+text-decoration:none;
+}
+/*bar*/
+.bar{
+}
+
+/*banner*/
+.banner li{
+position:relative;
+}
+.banner li img{
+width:100%;
+}
+.banner li a{
+display:block;
+width:100%;
+color:white;
+font-weight: 700;
+}
+.banner li span {
+position:absolute;
+bottom:0px;
+left:0px;
+background-color:rgba(0,0,0,.4);
+width:100%;
+line-height:30px;
+}
+
+/*matrix*/
+.matrix li{
+position:relative;
+float:left;
+width:48%;
+margin:1%;
+}
+.matrix li img{
+width:100%;
+vertical-align: top;
+}
+.matrix li a{
+display:block;
+width:100%;
+color:white;
+font-weight: 700;
+}
+.matrix li span {
+position:absolute;
+bottom:0px;
+left:0px;
+background-color:rgba(0,0,0,.4);
+width:100%;
+line-height:30px;
+text-indent:5px;
+}
+/*listview*/
+.listview{
+}
+
+

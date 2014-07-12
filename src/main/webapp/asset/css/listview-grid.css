@@ -1,0 +1,116 @@
+/* A bit custom styling */
+#item .ui-listview li .ui-btn p {
+	color: #c0c0c0;
+}
+#item .ui-listview li .ui-btn .ui-li-aside {
+	color: #eee;
+}
+
+#item .ui-content {
+	padding: .5625em; /* 9px */
+}
+#item .ui-listview li {
+	float: left;
+	width: 47.6%; /* 33.3333% incl. 2 x 1.2% margin */
+	display:block;
+	margin: .5625em 1.2%;
+}
+
+#item .ui-listview li a{
+	display:block;
+}
+
+#item .ui-listview li > .ui-btn {
+	-webkit-box-sizing: border-box; /* include padding and border in height so we can set it to 100% */
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 100%;
+}
+#item .ui-listview li.ui-li-has-thumb .ui-li-thumb {
+	height: auto; /* To keep aspect ratio. */
+	width: 100%;
+	max-height: none;
+}
+/* Make all list items and anchors inherit the border-radius from the UL. */
+#item .ui-listview li,
+#item .ui-listview li .ui-btn,
+#item .ui-listview .ui-li-thumb {
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
+}
+/* Hide the icon */
+#item .ui-listview .ui-btn-icon-right:after {
+	display: none;
+}
+/* Make text wrap. */
+#item .ui-listview h2,
+#item .ui-listview p {
+	white-space: normal;
+	overflow: visible;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+/* Text position */
+#item .ui-listview h2 {
+	font-size: 1.25em;
+	margin: 0;
+	padding: .125em 1em;
+	bottom: 30%;
+}
+#item .ui-listview p {
+	font-size: 1em;
+	margin: 0;
+	padding: 0 1.25em;
+	min-height: 30%;
+	bottom: 0;
+}
+/* Semi transparent background and different position if there is a thumb. The button has overflow hidden so we don't need to set border-radius. */
+#item .ui-listview .ui-li-has-thumb h2,
+#item .ui-listview .ui-li-has-thumb p {
+	background: #111;
+	background: rgba(0,0,0,.6);
+}
+#item .ui-listview .ui-li-has-thumb h2 {
+	bottom: 35%;
+}
+#item .ui-listview .ui-li-has-thumb p {
+	min-height: 35%;
+}
+#item .ui-listview .ui-li-aside {
+	padding: .125em .625em;
+	width: auto;
+	min-height: 0;
+	top: 0;
+	left: auto;
+	bottom: auto;
+	/* Custom styling. */
+	background: #990099;
+	background: rgba(153,0,153,.85);
+	-webkit-border-top-right-radius: inherit;
+	border-top-right-radius: inherit;
+	-webkit-border-bottom-left-radius: inherit;
+	border-bottom-left-radius: inherit;
+	-webkit-border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+#item .ui-listview li {
+	-moz-box-shadow: 0px 0px 9px #111;
+	-webkit-box-shadow: 0px 0px 9px #111;
+	box-shadow: 0px 0px 9px #111;
+}
+#item .ui-listview li > .ui-btn:hover {
+	-moz-box-shadow: 0px 0px 12px #33ccff;
+	-webkit-box-shadow: 0px 0px 12px #33ccff;
+	box-shadow: 0px 0px 12px #33ccff;
+}
+/* Animate focus and hover style, and resizing. */
+#item .ui-listview li,
+#item .ui-listview .ui-btn {
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	transition: all 500ms ease;
+}

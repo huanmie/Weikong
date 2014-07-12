@@ -23,9 +23,19 @@ public class ItemDO implements Serializable {
 	private String itemName;
 	
 	/**
-	 * 分类key
+	 * 跳转链接
 	 */
-	private String item;
+	private String url;
+	
+	/**
+	 * 类别图片
+	 */
+	private String picture;
+	
+	/**
+	 * 类别描述
+	 */
+	private String description;
 	
 	/**
 	 * 状态
@@ -66,12 +76,28 @@ public class ItemDO implements Serializable {
 		this.itemName = itemName;
 	}
 
-	public String getItem() {
-		return item;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setItem(String item) {
-		this.item = item;
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Byte getStatus() {

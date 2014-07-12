@@ -1,20 +1,12 @@
-<!-- 页脚部分start -->
 <div data-role="footer" data-position="fixed" data-tap-toggle="false" data-theme="b" >
-	#if($page=="product" || $page=="cart")
+	#if($page=="market" || $page=="cart")
     <div id="custom-orderBar" data-role="controlgroup" data-type="horizontal" data-theme="a" class="custom-center">
 		<a id="custom-orderBar-content" href="#" class="ui-btn ui-btn-inline">loading</a>
-		#if($page=="product")
-			<a href="#cart" class="ui-btn ui-btn-inline">去结算</a>
+		#if($page=="market")
+			<a href="cart" class="ui-btn ui-btn-inline">选好了</a>
 		#else
 			<a id="custom-orderBar-create" href="#" class="ui-btn ui-btn-inline">立即下单</a>
 		#end
     </div>
 	#end
-    <div data-role="navbar" data-grid="b">
-	    <ul>
-			<li><a href="#product" class="#if($page=="product") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-list-ul fa-lg"></i></div> 逛街</a></li>
-			<li><a href="#cart" class="#if($page=="cart") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-shopping-cart fa-lg"></div></i> 购物筐</a></li>
-			<li><a href="#order" class="#if($page=="order") ui-btn-active #end"><div style="margin-bottom:4px"><i class="fa fa-gavel fa-lg"></div></i> 订单</a></li>
-	    </ul>
-    </div>
 </div>

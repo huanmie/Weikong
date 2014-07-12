@@ -1,0 +1,54 @@
+#set($pageTitle="选择喜欢的商品")
+#set($page="market")
+<!-- 商品容器start -->
+<div id="market" data-role="page" data-theme="a">
+    <!-- 页眉部分start -->
+    #parse("control/header.vm")
+    <!-- content部分start -->
+    <div id="productList" class="ui-content">
+    	<ul data-role="listview" data-icon="false">
+    		#foreach($product in $productList)
+    		<li data-id="$product.id" data-price="$product.dotPrice" data-min="0">
+    			<a href="#" data-popup="true">
+    				<img src="$product.thumbnail">
+    		    	<h2>$product.title
+    					<small>
+							¥$product.dotPrice/$product.unit
+        					#if($product.oriPrice)
+        						<span class="custom-decoration">原价¥$product.dotOriPrice</span>
+        					#end
+    					</small>
+    				</h2>
+    		    	<p>销量:$product.sales</p>
+    			</a>
+    			<div class="ui-li-aside" data-role="controlgroup" data-type="horizontal" data-mini="true" style="right:5px;top:40px">
+    			    <a href="#" class="productMinus ui-shadow ui-btn custom-btn custom-btn-icon">-</a>
+    			    <a href="#" class="productCount ui-shadow ui-btn custom-btn">0</a>
+    			    <a href="#" class="productPlus ui-shadow ui-btn custom-btn custom-btn-icon">+</a>
+    			</div>
+    			<div class="custom-popup-holder">
+    				<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">close</a>					    
+    				<div data-role="header" data-theme="a">
+    					<h1>${product.title} 实物图</h1>
+    				</div>
+    				<div role="main" class="ui-content">
+    					<div class="custom-center">
+    						<img src="$product.picture" style="max-width:100%">
+    					</div>
+						#foreach($imgSrc in $product.attrPictureList)
+						<div class="custom-center">
+    						<img src="$imgSrc" style="max-width:100%">
+    					</div>
+						#end
+    					$product.description
+    				</div>
+    			</div>
+    	    </li>
+    		#end
+    	</ul>
+    </div>
+    <!-- 页脚部分start -->
+    #parse("control/footer.vm")
+    <!-- 页脚工具 -->
+    #parse("control/popup.vm")
+</div>

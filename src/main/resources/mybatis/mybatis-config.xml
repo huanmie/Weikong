@@ -3,22 +3,26 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="AddressDO" type="com.feetao.web.model.AddressDO" />
-		<typeAlias alias="ArticleDO" type="com.feetao.web.model.ArticleDO" />
+		<typeAlias alias="BannerDO" type="com.feetao.web.model.BannerDO" />		
+		<typeAlias alias="BoardMsgDO" type="com.feetao.web.model.BoardMsgDO" />
 		<typeAlias alias="ItemDO" type="com.feetao.web.model.ItemDO" />
 		<typeAlias alias="MemberDO" type="com.feetao.web.model.MemberDO" />
 		<typeAlias alias="MessageDO" type="com.feetao.web.model.MessageDO" />
 		<typeAlias alias="OrderDO" type="com.feetao.web.model.OrderDO" />
 		<typeAlias alias="ProductDO" type="com.feetao.web.model.ProductDO" />
+		<typeAlias alias="ShopDO" type="com.feetao.web.model.ShopDO" />		
 		<typeAlias alias="WechatDO" type="com.feetao.web.model.WechatDO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/address.xml" />
-		<mapper resource="mybatis/article.xml" />
+		<mapper resource="mybatis/banner.xml" />
+		<mapper resource="mybatis/board.xml" />
 		<mapper resource="mybatis/item.xml" />
 		<mapper resource="mybatis/member.xml" />
 		<mapper resource="mybatis/message.xml" />
 		<mapper resource="mybatis/order.xml" />
 		<mapper resource="mybatis/product.xml" />
+		<mapper resource="mybatis/shop.xml" />		
 		<mapper resource="mybatis/wechat.xml" />
 	</mappers>
 </configuration>

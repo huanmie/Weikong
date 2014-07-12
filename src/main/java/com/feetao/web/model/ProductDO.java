@@ -48,10 +48,15 @@ public class ProductDO implements Serializable {
 	private Long price;
 	
 	/**
-	 * 当前价格
+	 * 原价
 	 */
-	private Long currPrice;
+	private Long oriPrice;
 
+	/**
+	 * 属性图
+	 */
+	private String attrPictures;
+	
 	/**
 	 * 单位
 	 */
@@ -181,12 +186,20 @@ public class ProductDO implements Serializable {
 		this.item = item;
 	}
 
-	public Long getCurrPrice() {
-		return currPrice;
+	public Long getOriPrice() {
+		return oriPrice;
 	}
 
-	public void setCurrPrice(Long currPrice) {
-		this.currPrice = currPrice;
+	public void setOriPrice(Long oriPrice) {
+		this.oriPrice = oriPrice;
 	}
 
+	public String getAttrPictures() {
+		return attrPictures;
+	}
+
+	public void setAttrPictures(String attrPictures) {
+		this.attrPictures = attrPictures;
+	}
+	
 }

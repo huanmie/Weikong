@@ -31,6 +31,11 @@ public class AddressVO {
 	 * 地址
 	 */
 	private String address;
+	
+	/**
+	 * 默认
+	 */
+	private Byte addrStatus;
 
 	public Long getId() {
 		return id;
@@ -78,6 +83,14 @@ public class AddressVO {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public Byte getAddrStatus() {
+		return addrStatus;
+	}
+
+	public void setAddrStatus(Byte addrStatus) {
+		this.addrStatus = addrStatus;
 	}
 
 	@Override

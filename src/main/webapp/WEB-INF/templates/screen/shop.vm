@@ -1,0 +1,13 @@
+<div>
+	<ul class="listview">
+		#foreach($shop in $shopList)
+		<li>
+			<a href="$shop.url" data-transition="slide" data-ignore="true" class="after">
+				<img src="$shop.picture">
+		    	<h3>${shop.name}</h3>
+		    	<p>${shop.address}</p>
+			</a>
+	    </li>
+		#end
+	</ul>
+</div>

@@ -6,12 +6,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<bean id="addressService" class="com.feetao.web.service.impl.AddressServiceImpl" />
-	<bean id="articleService" class="com.feetao.web.service.impl.ArticleServiceImpl" />
+	<bean id="bannerService" class="com.feetao.web.service.impl.BannerServiceImpl" />			
+	<bean id="boardService" class="com.feetao.web.service.impl.BoardServiceImpl" />	
 	<bean id="itemService" class="com.feetao.web.service.impl.ItemServiceImpl" />
 	<bean id="memberService" class="com.feetao.web.service.impl.MemberServiceImpl" />
 	<bean id="messageService" class="com.feetao.web.service.impl.MessageServiceImpl" />
 	<bean id="orderService" class="com.feetao.web.service.impl.OrderServiceImpl" />
 	<bean id="productService" class="com.feetao.web.service.impl.ProductServiceImpl" />
+	<bean id="shopService" class="com.feetao.web.service.impl.ShopServiceImpl" />		
 	<bean id="wechatService" class="com.feetao.web.service.impl.WechatServiceImpl" />
 	
 </beans>

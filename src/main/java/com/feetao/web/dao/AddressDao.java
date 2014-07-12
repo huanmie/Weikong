@@ -24,6 +24,23 @@ public class AddressDao extends SqlSessionDaoSupport {
 		this.getSqlSession().insert("address.addAddress", address);
 	}
 	
+	public void setAddress(Long userId , String openId , Long id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		params.put("openId", openId);
+		params.put("id", id);
+		this.getSqlSession().update("address.updateUndefault" , params);
+		this.getSqlSession().update("address.updateDefault" , params);
+	}
+	
+	public AddressDO getDefaultAddress(Long userId , String openId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userId", userId);
+		params.put("openId", openId);
+		params.put("status", StatusType.ONLINE);
+		return this.getSqlSession().selectOne("address.getDefaultAddress" , params);
+	}
+	
 	public AddressDO getAddressById(Long userId , String openId, Long id) {
 		Map<String, Object> params = new HashMap<String , Object>();
 		params.put("userId", userId);

@@ -38,6 +38,11 @@ public class AddressDO implements Serializable {
 	private String address;
 
 	/**
+	 * 默认地址
+	 */
+	private Byte addrStatus;
+	
+	/**
 	 * 状态
 	 */
 	private Byte status;
@@ -98,6 +103,14 @@ public class AddressDO implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public Byte getAddrStatus() {
+		return addrStatus;
+	}
+
+	public void setAddrStatus(Byte addrStatus) {
+		this.addrStatus = addrStatus;
 	}
 
 	public Byte getStatus() {
